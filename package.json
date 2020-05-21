@@ -1,0 +1,24 @@
+{
+  "name": "bengali_community_library",
+  "version": "1.0.0",
+  "description": "This is the testing repository for group 37 of software engineering project A 2020",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SEPA2020G37/bengali_library_test.git"
+  },
+  "keywords": [
+    "bengali",
+    "community",
+    "library"
+  ],
+  "author": "Group 37",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SEPA2020G37/bengali_library_test/issues"
+  },
+  "homepage": "https://github.com/SEPA2020G37/bengali_library_test#readme"
+}
