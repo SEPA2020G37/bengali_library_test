@@ -1,9 +1,10 @@
 {
   "name": "bengali_community_library",
   "version": "1.0.0",
-  "description": "This is the testing repository for group 37 of software engineering project A 2020",
+  "description": "This is the main repository for group 37 of software engineering project A 2020",
   "main": "app.js",
   "scripts": {
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -20,5 +21,8 @@
   "bugs": {
     "url": "https://github.com/SEPA2020G37/bengali_library_test/issues"
   },
-  "homepage": "https://github.com/SEPA2020G37/bengali_library_test#readme"
+  "homepage": "https://github.com/SEPA2020G37/bengali_library_test#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }
