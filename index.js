@@ -1,9 +1,8 @@
 const express = require('express');
-
 const app = express();
 
 app.get('/', (req, res, next) => {
-    res.send("<h1>This is sourced from the new github repo</h1>");
+    res.send("home.html");
 });
 
 app.listen(8080, () => {
