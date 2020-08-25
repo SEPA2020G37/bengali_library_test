@@ -1,6 +1,7 @@
 const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
+const db = require('./models/index.js');
 
 // create a node server
 const app = express();

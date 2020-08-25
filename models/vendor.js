@@ -18,19 +18,19 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       autoIncrement: true,
       primaryKey: true,
-      type: Sequelize.INTEGER
+      type: DataTypes.INTEGER
     },
     name: {
-      type: Sequelize.STRING,
+      type: DataTypes.STRING,
       allowNull: false,
     },
     contactNo: {
-      type: Sequelize.STRING,
+      type: DataTypes.STRING,
       allowNull: false,
       unique: true
     },
     email: {
-      type: Sequelize.STRING,
+      type: DataTypes.STRING,
       allowNull: false,
       unique: true,
       validate: {
@@ -38,28 +38,28 @@ module.exports = (sequelize, DataTypes) => {
       }
     },
     address: {
-      type: Sequelize.STRING,
+      type: DataTypes.STRING,
       allowNull: false,
       validate: {
         notEmpty: true
       }
     },
     city: {
-      type: Sequelize.STRING,
+      type: DataTypes.STRING,
       allowNull: false,
       validate: {
         notEmpty: true
       }
     },
     state: {
-      type: Sequelize.STRING,
+      type: DataTypes.STRING,
       allowNull: false,
       validate: {
         notEmpty: true
       }
     },
     postCode: {
-      type: Sequelize.INTEGER,
+      type: DataTypes.INTEGER,
       allowNull: false,
       validate: {
         isNumeric: true,
@@ -68,11 +68,11 @@ module.exports = (sequelize, DataTypes) => {
     },
     createdAt: {
       allowNull: false,
-      type: Sequelize.DATE
+      type: DataTypes.DATE
     },
     updatedAt: {
       allowNull: false,
-      type: Sequelize.DATE
+      type: DataTypes.DATE
     }
   }, {
     sequelize,

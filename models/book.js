@@ -22,10 +22,10 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       autoIncrement: true,
       primaryKey: true,
-      type: Sequelize.INTEGER
+      type: DataTypes.INTEGER
     },
     isbn: {
-      type: Sequelize.STRING,
+      type: DataTypes.STRING,
       allowNull: false,
       unique: true,
       validate: {
@@ -33,28 +33,28 @@ module.exports = (sequelize, DataTypes) => {
       }
     },
     title: {
-      type: Sequelize.STRING,
+      type: DataTypes.STRING,
       allowNull: false,
       validate: {
         notEmpty: true
       }
     },
     description: {
-      type: Sequelize.TEXT,
+      type: DataTypes.TEXT,
       allowNull: false,
       validate: {
         notEmpty: true
       }
     },
     price: {
-      type: Sequelize.FLOAT,
+      type: DataTypes.FLOAT,
       allowNull: false,
       validate: {
         isFloat: true
       }
     },
     link: {
-      type: Sequelize.STRING,
+      type: DataTypes.STRING,
       allowNull: false,
       unique: true,
       validate: {
@@ -62,7 +62,7 @@ module.exports = (sequelize, DataTypes) => {
       }
     },
     vendorId: {
-      type: Sequelize.INTEGER,
+      type: DataTypes.INTEGER,
       allowNull: false,
       references: {
         model: 'Vendors',
@@ -71,11 +71,11 @@ module.exports = (sequelize, DataTypes) => {
     },
     createdAt: {
       allowNull: false,
-      type: Sequelize.DATE
+      type: DataTypes.DATE
     },
     updatedAt: {
       allowNull: false,
-      type: Sequelize.DATE
+      type: DataTypes.DATE
     }
   }, {
     sequelize,

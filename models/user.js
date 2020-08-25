@@ -21,24 +21,24 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       autoIncrement: true,
       primaryKey: true,
-      type: Sequelize.INTEGER
+      type: DataTypes.INTEGER
     },
     firstName: {
-      type: Sequelize.STRING,
+      type: DataTypes.STRING,
       allowNull: false,
       validate: {
         notEmpty: true
       }
     },
     lastName: {
-      type: Sequelize.STRING,
+      type: DataTypes.STRING,
       allowNull: false,
       validate: {
         notEmpty: true
       }
     },
     email: {
-      type: Sequelize.STRING,
+      type: DataTypes.STRING,
       allowNull: false,
       unique: true,
       validate: {
@@ -46,17 +46,17 @@ module.exports = (sequelize, DataTypes) => {
       }
     },
     salt: {
-      type: Sequelize.STRING,
+      type: DataTypes.STRING,
       unique: true,
       allowNull: false
     },
     hash: {
-      type: Sequelize.STRING,
+      type: DataTypes.STRING,
       unique: true,
       allowNull: false
     },
     positionId: {
-      type: Sequelize.INTEGER,
+      type: DataTypes.INTEGER,
       allowNull: false,
       references: {
         model: 'Positions',
@@ -65,11 +65,11 @@ module.exports = (sequelize, DataTypes) => {
     },
     createdAt: {
       allowNull: false,
-      type: Sequelize.DATE
+      type: DataTypes.DATE
     },
     updatedAt: {
       allowNull: false,
-      type: Sequelize.DATE
+      type: DataTypes.DATE
     }
   }, {
     sequelize,

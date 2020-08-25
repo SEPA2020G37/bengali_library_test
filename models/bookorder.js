@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
   };
   BookOrder.init({
     bookId: {
-      type: Sequelize.INTEGER,
+      type: DataTypes.INTEGER,
       primaryKey: true,
       allowNull: false,
       autoIncrement: false,
@@ -25,7 +25,7 @@ module.exports = (sequelize, DataTypes) => {
       }
     },
     orderId: {
-      type: Sequelize.INTEGER,
+      type: DataTypes.INTEGER,
       primaryKey: true,
       allowNull: false,
       autoIncrement: false,
@@ -36,11 +36,11 @@ module.exports = (sequelize, DataTypes) => {
     },
     createdAt: {
       allowNull: false,
-      type: Sequelize.DATE
+      type: DataTypes.DATE
     },
     updatedAt: {
       allowNull: false,
-      type: Sequelize.DATE
+      type: DataTypes.DATE
     }
   }, {
     sequelize,

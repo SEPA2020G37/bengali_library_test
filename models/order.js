@@ -20,10 +20,10 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       autoIncrement: true,
       primaryKey: true,
-      type: Sequelize.INTEGER
+      type: DataTypes.INTEGER
     },
     userId: {
-      type: Sequelize.INTEGER,
+      type: DataTypes.INTEGER,
       allowNull: false,
       unique: true,
       references: {
@@ -32,7 +32,7 @@ module.exports = (sequelize, DataTypes) => {
       }
     },
     transactionId: {
-      type: Sequelize.INTEGER,
+      type: DataTypes.INTEGER,
       allowNull: false,
       unique: true,
       references: {
@@ -41,21 +41,21 @@ module.exports = (sequelize, DataTypes) => {
       }
     },
     totalPrice: {
-      type: Sequelize.FLOAT,
+      type: DataTypes.FLOAT,
       allowNull: false,
       validate: {
         isFloat: true
       }
     },
     deliveryDate: {
-      type: Sequelize.DATE,
+      type: DataTypes.DATE,
       allowNull: false,
       validate: {
         isDate: true
       }
     },
     status: {
-      type: Sequelize.STRING,
+      type: DataTypes.STRING,
       allowNull: false,
       validate: {
         isAlpha: true
@@ -63,11 +63,11 @@ module.exports = (sequelize, DataTypes) => {
     },
     createdAt: {
       allowNull: false,
-      type: Sequelize.DATE
+      type: DataTypes.DATE
     },
     updatedAt: {
       allowNull: false,
-      type: Sequelize.DATE
+      type: DataTypes.DATE
     }
   }, {
     sequelize,
