@@ -2,14 +2,33 @@
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.createTable('UserBookListBooks', {
-      id: {
-        allowNull: false,
-        autoIncrement: true,
+      bookId: {
+        type: Sequelize.INTEGER,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        allowNull: false,
+        autoIncrement: false,
+        references: {
+          model: 'Books',
+          key: 'id'
+        }
       },
-      id: {
-        type: Sequelize.INTEGER
+      userBookListId: {
+        type: Sequelize.INTEGER,
+        primaryKey: true,
+        allowNull: false,
+        autoIncrement: false,
+        references: {
+          model: 'UserBookLists',
+          key: 'id'
+        }
+      },
+      currentPage: {
+        type: Sequelize.INTEGER,
+        allowNull: true,
+        validate: {
+          isNumeric: true,
+          isInt: true
+        }
       },
       createdAt: {
         allowNull: false,

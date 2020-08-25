@@ -10,11 +10,41 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      Transaction.belongsTo(models.Coupon);
+      Transaction.hasOne(models.Order);
     }
   };
   Transaction.init({
-    description: DataTypes.STRING
+    id: {
+      allowNull: false,
+      autoIncrement: true,
+      primaryKey: true,
+      type: Sequelize.INTEGER
+    },
+    description: {
+      type: Sequelize.TEXT,
+      allowNull: false
+    },
+    method: {
+      type: Sequelize.STRING,
+      allowNull: false
+    },
+    couponId: {
+      type: Sequelize.INTEGER,
+      allowNull: true,
+      references: {
+        model: 'Coupons',
+        key: 'id'
+      }
+    },
+    createdAt: {
+      allowNull: false,
+      type: Sequelize.DATE
+    },
+    updatedAt: {
+      allowNull: false,
+      type: Sequelize.DATE
+    }
   }, {
     sequelize,
     modelName: 'Transaction',

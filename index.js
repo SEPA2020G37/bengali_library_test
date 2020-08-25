@@ -4,7 +4,6 @@ const bodyParser = require('body-parser');
 
 // create a node server
 const app = express();
-const path = require('path');
 
 // update the default express view ingine to use ejs
 app.set('view engine', 'ejs');

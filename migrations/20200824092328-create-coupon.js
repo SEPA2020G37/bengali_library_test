@@ -8,8 +8,26 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      name: {
-        type: Sequelize.STRING
+      code: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        validate: {
+          isAlphanumeric: true
+        }
+      },
+      discount: {
+        type: Sequelize.FLOAT,
+        allowNull: false,
+        validate: {
+          isFloat: true
+        }
+      },
+      status: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        validate: {
+          isAlpha: true
+        }
       },
       createdAt: {
         allowNull: false,

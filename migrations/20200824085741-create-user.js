@@ -9,7 +9,44 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       firstName: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false,
+        validate: {
+          notEmpty: true
+        }
+      },
+      lastName: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        validate: {
+          notEmpty: true
+        }
+      },
+      email: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        unique: true,
+        validate: {
+          isEmail: true
+        }
+      },
+      salt: {
+        type: Sequelize.STRING,
+        unique: true,
+        allowNull: false
+      },
+      hash: {
+        type: Sequelize.STRING,
+        unique: true,
+        allowNull: false
+      },
+      positionId: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: 'Positions',
+          key: 'id'
+        }
       },
       createdAt: {
         allowNull: false,

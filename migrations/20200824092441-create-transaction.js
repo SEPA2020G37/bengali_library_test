@@ -9,7 +9,20 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       description: {
-        type: Sequelize.STRING
+        type: Sequelize.TEXT,
+        allowNull: false
+      },
+      method: {
+        type: Sequelize.STRING,
+        allowNull: false
+      },
+      couponId: {
+        type: Sequelize.INTEGER,
+        allowNull: true,
+        references: {
+          model: 'Coupons',
+          key: 'id'
+        }
       },
       createdAt: {
         allowNull: false,

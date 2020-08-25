@@ -8,8 +8,20 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      id: {
-        type: Sequelize.INTEGER
+      userId: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'Users',
+          key: 'id'
+        }
+      },
+      qty: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        validate: {
+          isNumeric: true,
+          isInt: true
+        }
       },
       createdAt: {
         allowNull: false,

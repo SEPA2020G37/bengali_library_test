@@ -8,8 +8,44 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
+      userId: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        unique: true,
+        references: {
+          model: 'Users',
+          key: 'id'
+        }
+      },
+      transactionId: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        unique: true,
+        references: {
+          model: 'Transactions',
+          key: 'id'
+        }
+      },
       totalPrice: {
-        type: Sequelize.FLOAT
+        type: Sequelize.FLOAT,
+        allowNull: false,
+        validate: {
+          isFloat: true
+        }
+      },
+      deliveryDate: {
+        type: Sequelize.DATE,
+        allowNull: false,
+        validate: {
+          isDate: true
+        }
+      },
+      status: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        validate: {
+          isAlpha: true
+        }
       },
       createdAt: {
         allowNull: false,

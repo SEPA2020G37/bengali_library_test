@@ -10,11 +10,40 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      UserWishList.belongsTo(models.User);
+      UserWishList.belongsToMany(models.Book, { through: models.UserWishListBook });
     }
   };
   UserWishList.init({
-    id: DataTypes.INTEGER
+    id: {
+      allowNull: false,
+      autoIncrement: true,
+      primaryKey: true,
+      type: Sequelize.INTEGER
+    },
+    userId: {
+      type: Sequelize.INTEGER,
+      references: {
+        model: 'Users',
+        key: 'id'
+      }
+    },
+    qty: {
+      type: Sequelize.INTEGER,
+      allowNull: false,
+      validate: {
+        isNumeric: true,
+        isInt: true
+      }
+    },
+    createdAt: {
+      allowNull: false,
+      type: Sequelize.DATE
+    },
+    updatedAt: {
+      allowNull: false,
+      type: Sequelize.DATE
+    }
   }, {
     sequelize,
     modelName: 'UserWishList',

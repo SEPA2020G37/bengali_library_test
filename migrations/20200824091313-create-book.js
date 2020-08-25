@@ -8,8 +8,50 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      id: {
-        type: Sequelize.INTEGER
+      isbn: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        unique: true,
+        validate: {
+          notEmpty: true
+        }
+      },
+      title: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        validate: {
+          notEmpty: true
+        }
+      },
+      description: {
+        type: Sequelize.TEXT,
+        allowNull: false,
+        validate: {
+          notEmpty: true
+        }
+      },
+      price: {
+        type: Sequelize.FLOAT,
+        allowNull: false,
+        validate: {
+          isFloat: true
+        }
+      },
+      link: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        unique: true,
+        validate: {
+          isUrl: true
+        }
+      },
+      vendorId: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: 'Vendors',
+          key: 'id'
+        }
       },
       createdAt: {
         allowNull: false,

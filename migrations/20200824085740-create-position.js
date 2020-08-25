@@ -9,7 +9,18 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       position: {
-        type: Sequelize.STRING
+        allowNull: false,
+        type: Sequelize.STRING,
+        validate: {
+          notEmpty: true
+        }
+      },
+      description: {
+        allowNull: false,
+        type: Sequelize.TEXT,
+        validate: {
+          notEmpty: true
+        }
       },
       createdAt: {
         allowNull: false,

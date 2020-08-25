@@ -1,7 +1,5 @@
 'use strict';
-const {
-  Model
-} = require('sequelize');
+const { Model, Sequelize } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Position extends Model {
     /**
@@ -10,11 +8,38 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      Position.hasMany(models.User);
     }
   };
   Position.init({
-    position: DataTypes.STRING
+    id: {
+      allowNull: false,
+      autoIncrement: true,
+      primaryKey: true,
+      type: Sequelize.INTEGER
+    },
+    position: {
+      allowNull: false,
+      type: Sequelize.STRING,
+      validate: {
+        notEmpty: true
+      }
+    },
+    description: {
+      allowNull: false,
+      type: Sequelize.TEXT,
+      validate: {
+        notEmpty: true
+      }
+    },
+    createdAt: {
+      allowNull: false,
+      type: Sequelize.DATE
+    },
+    updatedAt: {
+      allowNull: false,
+      type: Sequelize.DATE
+    }
   }, {
     sequelize,
     modelName: 'Position',
