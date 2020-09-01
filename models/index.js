@@ -9,8 +9,10 @@ const db = {};
 
 let sequelize;
 
+// establish a db connection
 sequelize = new Sequelize(config.database, config.username, config.password, config);
 
+// import all the model files and run their associations if any are present
 fs
   .readdirSync(__dirname)
   .filter(file => {
@@ -30,4 +32,5 @@ Object.keys(db).forEach(modelName => {
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
+// expose a db connection object with the connection and all model instances
 module.exports = db;
