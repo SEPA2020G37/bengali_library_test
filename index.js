@@ -1,24 +1,40 @@
 const path = require('path');
 const express = require('express');
-const bodyParser = require('body-parser');
 const db = require('./models/index.js');
+const bodyParser = require('body-parser');
+const passportConfig = require('./auth/passport');
+const expressSession = require('express-session');
+const authRoutes = require('./routes/authRoutes');
 
-// create a node server
+// Set up the local strategy for Passport based authentication
+passportConfig.setStrategy();
+
+// Create a node server
 const app = express();
 
-// update the default express view ingine to use ejs
+// Modify application configuration to set the templating engine to ejs
 app.set('view engine', 'ejs');
 
-// set the location to serve templates from
+// Modify application configuration for the directory to serve templates from
 app.set('views', 'views');
 
-// set up body parser to decode POST data and populate the request.body property
-app.use(bodyParser.urlencoded({ extended: false }));
-
-// specify the path to serve static files such as css, js and other resources
+// Set up middleware to serve static files
 app.use(express.static(path.join(__dirname, 'public')));
 
-// start the node server
+// Set up body parser to decode POST data and populate the request.body property
+app.use(bodyParser.urlencoded({ extended: false }));
+
+// Set up express session middleware
+app.use(expressSession({ secret: process.env.EXPRESS_SESSION_SECRET, resave: false, saveUninitialized: false }));
+
+// Initialize passport and restore auth state is any are available from the session
+app.use(passportConfig.passportInitialize);
+app.use(passportConfig.passportSession);
+
+// Route middleware
+app.use(authRoutes);
+
+// Start the node server
 app.listen(8080, () => {
     console.log('server running...');
 });
