@@ -18,11 +18,11 @@ module.exports.setStrategy = () => {
             if(user){
                 bcrypt.compare(password, user.hash, (err, result) => {
                     if(err) return callback(err);
-                    if(!result) return callback(null, false, { message: 'Password is incorrect' });
+                    if(!result) return callback(null, false, { message: 'Password is Incorrect' });
                     if(result) return callback(null, user);
                 });
             }else{
-                return callback(null, false, { message: 'Username is incorrect' });
+                return callback(null, false, { message: 'Username is Incorrect' });
             }
         })
         .catch(err => {

@@ -1,5 +1,6 @@
 const path = require('path');
 const express = require('express');
+const flash = require('connect-flash');
 const db = require('./models/index.js');
 const bodyParser = require('body-parser');
 const passportConfig = require('./auth/passport');
@@ -26,6 +27,11 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 // Set up express session middleware
 app.use(expressSession({ secret: process.env.EXPRESS_SESSION_SECRET, resave: false, saveUninitialized: false }));
+
+// Set up flash middleware to enable flash messaging support for passport error handling.
+// When an error occurs in the authentication process the custom set message for credential issues
+// will be set in flash by passport with the handle 'error'
+app.use(flash());
 
 // Initialize passport and restore auth state is any are available from the session
 app.use(passportConfig.passportInitialize);
