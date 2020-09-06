@@ -8,7 +8,7 @@ let Router = express.Router();
 
 // Route for retrieving the login page.
 Router.get('/login', (req, res, next) => {
-    res.render('login', { message: req.flash('error') }, (err, html) => {
+    res.render('login', { message: req.flash('error'), title: 'login' }, (err, html) => {
         if(err)
             throw err;
         else
@@ -22,13 +22,13 @@ Router.get('/login', (req, res, next) => {
 Router.post('/login', 
     passportConfig.passport.authenticate('local', { failureRedirect: '/login', failureFlash: true }),
     (req, res, next) => {
-        res.redirect('/user_dashboard', { user: req.user });
+        res.redirect('/user_dashboard');
     }
 );
 
 // Route for retrieving the register page
 Router.get('/register', (req, res, next) => {
-    res.render('/register', { message: req.flash('signupError') });
+    res.render('register', { message: req.flash('signupError'), title: 'register' });
 });
 
 // Route to register a user.
@@ -51,7 +51,7 @@ Router.post('/register', (req, res, next) => {
                             .then(user => {
                                 req.login(user, (err) => {
                                     if(err) throw err;
-                                    else res.render('/user_dashboard', { user: req.user });
+                                    else res.render('user-dashboard', { user: req.user });
                                 });
                             });
                         }else{

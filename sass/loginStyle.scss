@@ -1,0 +1,29 @@
+@import 'logAndReg';
+
+.background{
+    align-items: center;
+    border: 1px solid rgb(255, 255, 255);
+    background-color: rgb(255, 255, 255);
+    border-radius: 7px;
+    justify-content: center;
+    left: 50%;
+    margin-right: -50%;
+    padding: 2rem 3rem;
+    position: fixed;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    text-align: center;
+    width: 250px;
+}
+
+.signin-logo{
+    height: 50%;
+    margin-bottom: 5%;
+    width: 50%;
+}
+
+.signin-field-image{
+    height: 21px;
+    vertical-align: bottom;
+    width: 21px;
+}
