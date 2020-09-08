@@ -1,0 +1,126 @@
+
+body{
+    padding-top: 1%;
+}
+
+@media (max-width: 740px) {
+    body {
+      padding-top: 0px;
+    }
+  }
+
+.navbar {
+    background-color: #27496D !important;
+    padding-bottom: 1.2rem !important;
+    padding-top: 1.8rem !important;
+}
+
+.navbar a:hover{
+    color: #e8b923 !important;
+}
+
+.navbar .nav-link {
+    padding-right: 1rem !important;
+    padding-top: 0.5rem !important;
+}
+
+.my-button{
+    color: #e8b923;
+    border: 1px solid #e8b923;
+}
+
+.my-button:hover{
+    background-color: #D4AF37;
+    border: #d6a63e;
+}
+.my-row{
+    padding-top: 10%;
+}
+
+.my-col1{
+    background-color:#DAE1E7 ;
+   /* background-image: linear-gradient(#DAE1E7,#b3d3ee); */
+   padding-top: 9.9%;
+    padding-bottom: 5.7%;
+    height: auto /* 37.5rem */;
+    background-repeat: repeat-y;
+    overflow: hidden;
+    position: sticky; 
+}
+
+@media (max-width: 740px) {
+    .my-col1 {
+      text-align: center;
+      padding-top: 40%;
+    }
+  }
+
+ /* @media (max-width: 1200px) {
+    .my-col1 {
+      padding-top: 12%;
+    }
+  } */
+
+.filter-by {
+    font-size: 150%;
+    color: #27496D;
+}
+
+.left-side-text {
+    font-size: 110%;
+    color: #27496D;
+    padding-top:3.2%/*0.5rem*/;
+}
+
+.left-side-text input[type=text], textarea{
+    -webkit-transition: all 0.30s ease-in-out;
+    -moz-transition: all 0.30s ease-in-out;
+    -ms-transition: all 0.30s ease-in-out;
+    -o-transition: all 0.30s ease-in-out;
+    outline: none;
+    padding: 3px 0px 3px 3px;
+    margin: 5px 1px 3px 0px;
+    border: 1px solid rgba(81, 203, 238, 1);
+}
+
+.left-side-text input[type=text]:focus, textarea:focus {
+    box-shadow: 0 0 20px rgba(81, 203, 238, 1);
+    padding: 3px 0px 3px 3px;
+    margin: 5px 1px 3px 0px;
+    border: 1px solid rgba(81, 203, 238, 1); 
+  }
+
+  .left-side-text input[type=text] {
+    border-radius: 6px;
+  }
+
+.latest-arrival {
+    font-size: 150%;
+    color: #27496D;
+}
+
+.my-col2 {
+    overflow: auto;
+    padding-top: 9.9%;
+    height:100%/*46.9rem*/; 
+} 
+
+
+.align-middle {
+    transition: transform .2s;
+}
+
+.align-middle:hover {
+    transform: scale(1.2);
+}
+
+/* .name {
+    padding-left:350px !important;
+}
+*/
+
+
+
+
+
+

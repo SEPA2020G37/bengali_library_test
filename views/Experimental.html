@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang ="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="description" content="Book Store Page" />
+        <meta name="keywords" content="HTML" />
+        <meta name="author" content="Group 37" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>Book Store Page</title>
+        <link rel="shortcut icon" href="../public/css/Favicon.png" /> <!--Favicon Image-->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous"> <!--Link to the Bootstrap CDN-->
+        <link rel="stylesheet" href="../public/css/glide.core.min.css"> <!--GLide js CSS file-->
+        <link rel="stylesheet" href="../public/css/glide.theme.css"> <!--GLide js CSS file-->
+        <link rel="stylesheet" href="../public/css/experimental.css" > <!--Local CSS file-->
+    </head> 
+        <body>
+            <div class="container-fluid"> <!--Bootstrap container-->
+                <div class="row"> <!--Bootstrap Grid (row-navbar)-->
+                    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark"><!--Bootstrap class for custom navbar-->
+                        <a href="#" class="navbar-brand">
+                            <img src="../public/css/New_logo.png" width="100" height="100" class="d-inline-block align-middle" alt="BCLibrary">
+                        </a>
+                        <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarMenu">
+                        <span class="navbar-toggler-icon" ></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarMenu">
+                            <ul class="navbar-nav mr-auto">
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">Library</a> 
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">About Us</a> 
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">Wishlist</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">My Books</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">Cart</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">My Purchases</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">Logout</a>
+                                </li>
+                               <!-- <li class="nav-item">
+                                    <a href="#" class="nav-link name">Hi! Username </a>
+                                </li> -->
+                            </ul> 
+                            <form class="form-inline my-2 my-lg-0">
+                                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                                <button class="btn btn-outline-info my-2 my-sm-0 my-button" type="submit">Search</button>
+                        </form>
+                        </div>
+                    </nav> 
+                
+               <!-- <div class="row my-row"> -->
+                    <div class="col-sm-3 col-md-4 col-lg-2 my-col1" >
+                        <br />
+                        <p class ="filter-by">
+                            Filter By  
+                        </p>
+                        <p class="right-side-text">Price</p>
+                        <form class ="filter-form" id="filter-form" >
+                            <p class="left-side-text">
+                                <label for ="min-price"></label>
+                                <input type = "text" name="min-price" id="min-price" size="5" placeholder="$0" /><span class="spanning"> to 
+                                <label for ="max-price"></label>
+                                <input type = "text" name="max-price" id="max-price" size="5" placeholder="$0" />  
+                                </span>
+                            </p>
+                            <br />
+                            <p class="left-side-text">Genre</p>
+                                <input type="checkbox" id="Fantasy" name="Fantasy[]" value="Fantasy" />
+                                <label for="Fantasy">Fantasy</label><br />
+
+                                <input type="checkbox" id="Adventure" name="Adventure[]" value="Adventure" /> 
+                                <label for="Adventure">Adventure</label> <br />
+
+                                <input type="checkbox" id="Mystery" name="Mystery[]" value="Mystery" /> 
+                                <label for="Mystery">Mystery</label> <br />
+
+                                <input type="checkbox" id="Horror" name="Horror[]" value="Horror" /> 
+                                <label for="Horror">Horror</label> <br />
+                                
+                                <input type="checkbox" id="Thriller" name="Thriller[]" value="Thriller" /> 
+                                <label for="Thriller">Thriller</label> <br />   
+
+                                <input type="checkbox" id="Romance" name="Romance[]" value="Romance" /> 
+                                <label for="Romance">Romance</label> <br />  
+
+                                <input type="checkbox" id="Drama" name="Drama[]" value="Drama" /> 
+                                <label for="Drama">Drama</label> <br />
+
+                                <input type="checkbox" id="Contemporary" name="Contemporary[]" value="Contemporary" /> 
+                                <label for="Contemporary">Contemporary</label> <br />
+                        </form>
+                    </div>
+                    <div class="col-sm-9 col-md-8 col-lg-10 my-col2">
+                        <br />
+                        <p class="latest-arrival"> 
+                        Latest Arrivals
+                        </p>
+                        <div class="row">
+                            <div class="glide">
+                                <div class="glide__track" data-glide-el="track">
+                                    <ul class="glide__slides">
+                                
+                                        <li class="glide__slide">
+                                            <div class="card" style="width: 18rem;">
+                                                <img class="card-img-top" src="../public/css/book.png"  alt="Card image cap">
+                                                <div class="card-body">
+                                                    <h5 class="card-title">Book Name 1</h5>
+                                                    <p class="card-text">Description</p>
+                                                    <a href="#" class="btn btn-primary">+Cart</a>
+                                                    <a href="#" class="btn btn-primary">+Wishlist</a>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    
+                                    
+
+                            
+                                        <li class="glide__slide">
+                                            <div class="card" style="width: 18rem;">
+                                                <img class="card-img-top" src="../public/css/book.png"  alt="Card image cap">
+                                                <div class="card-body">
+                                                    <h5 class="card-title">Book Name 2</h5>
+                                                    <p class="card-text">Description</p>
+                                                    <a href="#" class="btn btn-primary">+Cart</a>
+                                                    <a href="#" class="btn btn-primary">+Wishlist</a>
+                                                </div>
+                                            </div>  
+                                        </li> 
+
+                            
+                                        <li class="glide__slide">
+                                            <div class="card" style="width: 18rem;">
+                                                <img class="card-img-top" src="../public/css/book.png"  alt="Card image cap">
+                                                <div class="card-body">
+                                                    <h5 class="card-title">Book Name 3</h5>
+                                                    <p class="card-text">Description</p>
+                                                    <a href="#" class="btn btn-primary">+Cart</a>
+                                                    <a href="#" class="btn btn-primary">+Wishlist</a>
+                                                </div>
+                                            </div> 
+                                        </li>  
+                            
+                                
+                                        <li class="glide__slide">
+                                            <div class="card" style="width: 18rem;">
+                                                <img class="card-img-top" src="../public/css/book.png"  alt="Card image cap">
+                                                <div class="card-body">
+                                                    <h5 class="card-title">Book Name 4</h5>
+                                                    <p class="card-text">Description</p>
+                                                    <a href="#" class="btn btn-primary">+Cart</a>
+                                                    <a href="#" class="btn btn-primary">+Wishlist</a>
+                                                </div>
+                                            </div>
+                                        </li>
+
+                                        
+                                        <li class="glide__slide">
+                                            <div class="card" style="width: 18rem;">
+                                                <img class="card-img-top" src="../public/css/book.png"  alt="Card image cap">
+                                                <div class="card-body">
+                                                    <h5 class="card-title">Book Name 5</h5>
+                                                    <p class="card-text">Description</p>
+                                                    <a href="#" class="btn btn-primary">+Cart</a>
+                                                    <a href="#" class="btn btn-primary">+Wishlist</a>
+                                                </div>
+                                            </div>
+                                        </li> 
+
+
+                                        <li class="glide__slide">
+                                            <div class="card" style="width: 18rem;">
+                                                <img class="card-img-top" src="../public/css/book.png"  alt="Card image cap">
+                                                <div class="card-body">
+                                                    <h5 class="card-title">Book Name 6</h5>
+                                                    <p class="card-text">Description</p>
+                                                    <a href="#" class="btn btn-primary">+Cart</a>
+                                                    <a href="#" class="btn btn-primary">+Wishlist</a>
+                                                </div>
+                                            </div> 
+                                        </li>  
+                            
+                                
+                                        <li class="glide__slide">
+                                            <div class="card" style="width: 18rem;">
+                                                <img class="card-img-top" src="../public/css/book.png"  alt="Card image cap">
+                                                <div class="card-body">
+                                                    <h5 class="card-title">Book Name 7</h5>
+                                                    <p class="card-text">Description</p>
+                                                    <a href="#" class="btn btn-primary">+Cart</a>
+                                                    <a href="#" class="btn btn-primary">+Wishlist</a>
+                                                </div>
+                                            </div>
+                                        </li>
+
+                                        
+                                        <li class="glide__slide">
+                                            <div class="card" style="width: 18rem;">
+                                                <img class="card-img-top" src="../public/css/book.png"  alt="Card image cap">
+                                                <div class="card-body">
+                                                    <h5 class="card-title">Book Name 8</h5>
+                                                    <p class="card-text">Description</p>
+                                                    <a href="#" class="btn btn-primary">+Cart</a>
+                                                    <a href="#" class="btn btn-primary">+Wishlist</a>
+                                                </div>
+                                            </div>
+                                        </li>
+
+                                    </ul>
+
+                                    <div class="glide__arrows" data-glide-el="controls">
+                                        <button class="glide__arrow glide__arrow--left" data-glide-dir="<"><img src="../public/css/arrow.png" height="30px" /></button>
+                                        <button class="glide__arrow glide__arrow--right" data-glide-dir=">"><img src="../public/css/arrow right.png" height="30px" /></button>
+                                    </div>
+
+                                </div>
+                                
+                            </div> 
+                        </div>
+                        <br />
+                        <p class="latest-arrival">
+                            Most Popular
+                        </p>
+                        <div class="row"> 
+                            <div class="glide">
+                                <div class="glide__track" data-glide-el="track">
+                                    <ul class="glide__slides">
+                                
+                                        <li class="glide__slide">
+                                            <div class="card" style="width: 18rem;">
+                                                <img class="card-img-top" src="../public/css/book.png"  alt="Card image cap">
+                                                <div class="card-body">
+                                                    <h5 class="card-title">Book Name 1</h5>
+                                                    <p class="card-text">Description</p>
+                                                    <a href="#" class="btn btn-primary">+Cart</a>
+                                                    <a href="#" class="btn btn-primary">+Wishlist</a>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    
+                                    
+
+                            
+                                        <li class="glide__slide">
+                                            <div class="card" style="width: 18rem;">
+                                                <img class="card-img-top" src="../public/css/book.png"  alt="Card image cap">
+                                                <div class="card-body">
+                                                    <h5 class="card-title">Book Name 2</h5>
+                                                    <p class="card-text">Description</p>
+                                                    <a href="#" class="btn btn-primary">+Cart</a>
+                                                    <a href="#" class="btn btn-primary">+Wishlist</a>
+                                                </div>
+                                            </div>  
+                                        </li> 
+
+                            
+                                        <li class="glide__slide">
+                                            <div class="card" style="width: 18rem;">
+                                                <img class="card-img-top" src="../public/css/book.png"  alt="Card image cap">
+                                                <div class="card-body">
+                                                    <h5 class="card-title">Book Name 3</h5>
+                                                    <p class="card-text">Description</p>
+                                                    <a href="#" class="btn btn-primary">+Cart</a>
+                                                    <a href="#" class="btn btn-primary">+Wishlist</a>
+                                                </div>
+                                            </div> 
+                                        </li>  
+                            
+                                
+                                        <li class="glide__slide">
+                                            <div class="card" style="width: 18rem;">
+                                                <img class="card-img-top" src="../public/css/book.png"  alt="Card image cap">
+                                                <div class="card-body">
+                                                    <h5 class="card-title">Book Name 4</h5>
+                                                    <p class="card-text">Description</p>
+                                                    <a href="#" class="btn btn-primary">+Cart</a>
+                                                    <a href="#" class="btn btn-primary">+Wishlist</a>
+                                                </div>
+                                            </div>
+                                        </li>
+
+                                        
+                                        <li class="glide__slide">
+                                            <div class="card" style="width: 18rem;">
+                                                <img class="card-img-top" src="../public/css/book.png"  alt="Card image cap">
+                                                <div class="card-body">
+                                                    <h5 class="card-title">Book Name 5</h5>
+                                                    <p class="card-text">Description</p>
+                                                    <a href="#" class="btn btn-primary">+Cart</a>
+                                                    <a href="#" class="btn btn-primary">+Wishlist</a>
+                                                </div>
+                                            </div>
+                                        </li> 
+
+
+                                        <li class="glide__slide">
+                                            <div class="card" style="width: 18rem;">
+                                                <img class="card-img-top" src="../public/css/book.png"  alt="Card image cap">
+                                                <div class="card-body">
+                                                    <h5 class="card-title">Book Name 6</h5>
+                                                    <p class="card-text">Description</p>
+                                                    <a href="#" class="btn btn-primary">+Cart</a>
+                                                    <a href="#" class="btn btn-primary">+Wishlist</a>
+                                                </div>
+                                            </div> 
+                                        </li>  
+                            
+                                
+                                        <li class="glide__slide">
+                                            <div class="card" style="width: 18rem;">
+                                                <img class="card-img-top" src="../public/css/book.png"  alt="Card image cap">
+                                                <div class="card-body">
+                                                    <h5 class="card-title">Book Name 7</h5>
+                                                    <p class="card-text">Description</p>
+                                                    <a href="#" class="btn btn-primary">+Cart</a>
+                                                    <a href="#" class="btn btn-primary">+Wishlist</a>
+                                                </div>
+                                            </div>
+                                        </li>
+
+                                        
+                                        <li class="glide__slide">
+                                            <div class="card" style="width: 18rem;">
+                                                <img class="card-img-top" src="../public/css/book.png"  alt="Card image cap">
+                                                <div class="card-body">
+                                                    <h5 class="card-title">Book Name 8</h5>
+                                                    <p class="card-text">Description</p>
+                                                    <a href="#" class="btn btn-primary">+Cart</a>
+                                                    <a href="#" class="btn btn-primary">+Wishlist</a>
+                                                </div>
+                                            </div>
+                                        </li>
+
+                                    </ul>
+
+                                    <div class="glide__arrows" data-glide-el="controls">
+                                        <button class="glide__arrow glide__arrow--left" data-glide-dir="<"><img src="../public/css/arrow.png" height="30px" /></button>
+                                        <button class="glide__arrow glide__arrow--right" data-glide-dir=">"><img src="../public/css/arrow right.png" height="30px" /></button>
+                                    </div>
+
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+               <!-- </div> -->
+            </div>
+            </div>
+            <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+            <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>  
+            <script src="https://cdn.jsdelivr.net/npm/@glidejs/glide"></script> 
+            <script>
+                const slider = document.querySelectorAll('.glide')
+                const config = {
+                    type: "carousel",
+                    perView: 4,
+                    breakpoints: {
+                        1000:{
+                            perView: 2
+                        },
+                        800: {
+                            perView: 2
+                        },
+                        500: {
+                            perView: 1
+                        }
+                    }
+                   // focusAt: 'center',
+                };
+                slider.forEach(item =>{
+                    new Glide(item, config).mount();
+                })
+            </script>
+        </body>
+</html>
