@@ -8,6 +8,7 @@ const passportConfig = require('./auth/passport');
 const expressSession = require('express-session');
 const authRoutes = require('./routes/authRoutes');
 const adminRoutes = require('./routes/adminRoutes');
+const userRoutes = require('./routes/userRoutes');
 
 // Set up the local strategy for Passport based authentication
 passportConfig.setStrategy();
@@ -42,6 +43,7 @@ app.use(passportConfig.passportSession);
 // Route middleware
 app.use(authRoutes);
 app.use(adminRoutes);
+app.use(userRoutes);
 
 // Start the node server
 app.listen(8080, () => {
