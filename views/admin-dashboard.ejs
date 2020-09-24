@@ -59,18 +59,61 @@
                         <div class="col-lg-1 col-sm-1 header-item">Edit</div>
                         <div class="col-lg-1 col-sm-1 header-item">Delete</div>
                     </div>
-                    <div class="table-rows">
+                    <div class="table-rows" id="accordionParent">
                         <% books.forEach((book) => {%>
                             <div class="table-row row">
                                 <div class="col-lg-2 col-sm-2 row-item"><%= book.isbn %></div>
                                 <div class="col-lg-2 col-sm-2 row-item"><%= book.title %></div>
                                 <div class="col-lg-2 col-sm-2 row-item"><%= book.description.substring(0, 30) %>...</div>
                                 <div class="col-lg-1 col-sm-1 row-item"><%= book.price %></div>
-                                <div class="col-lg-2 col-sm-2 row-item"><%= book.link %></div>
+                                <div class="col-lg-2 col-sm-2 row-item"><%= book.link.substring(0, 30) %>...</div>
                                 <div class="col-lg-1 col-sm-1 row-item"><%= book.Vendor.name %></div>
-                                <div class="col-lg-1 col-sm-1 row-item"><img src="resources/pen.svg" alt="" style="width:22px; height: 22px"></div>
-                                <div class="col-lg-1 col-sm-1 row-item"><img src="resources/delete.svg" alt="" style="width:22px; height: 22px"></div>
+                                <div class="col-lg-1 col-sm-1 row-item"><button type="button" class="admin-record-edit-button" data-toggle="collapse" data-target="#collapse-<%= book.id %>"><img src="resources/pen.svg" alt="" style="width:22px; height: 22px"></button></div>
+                                <div class="col-lg-1 col-sm-1 row-item"><a href="/delete-book?isbn=<%= book.isbn %>"><img src="resources/delete.svg" alt="" style="width:22px; height: 22px"></a></div>
                             </div>
+                            <div id="collapse-<%= book.id %>" class="collapse hide admin-edit-collapse" aria-labelledby="headingOne" data-parent="#accordionParent">
+                                <div class="admin-edit-accordion">
+                                    <form action="/update-book" method="POST">
+                                        <div class="table-row row">
+                                            <div class="col-lg-11 col-sm-11">
+                                                <div class="row">
+                                                    <div class="col-lg-4 col-sm-4">
+                                                        <div class="form-group">
+                                                            <input type="text" class="form-control" name="isbn" value="<%= book.isbn %>" disabled>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <input type="text" class="form-control" name="link" value="<%= book.link %>" disabled>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-4 col-sm-4">
+                                                        <div class="form-group">
+                                                            <input type="text" class="form-control" name="title" value="<%= book.title %>">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <input type="number" class="form-control" name="price" value="<%= book.price %>" step="0.01">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-4 col-sm-4">
+                                                        <div class="form-group">
+                                                            <textarea class="form-control" name="description" cols="30" rows="1"><%= book.description %></textarea>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <select name="vendor" id="vendor" class="form-control">
+                                                                <% vendors.forEach(vendor => { %>
+                                                                    <option value=<%= vendor.id %> <% book.Vendor.id === vendor.id ? "selected" : "" %>><%= vendor.name %></option>
+                                                                <% }) %>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-1 col-sm-1">
+                                                <button class="admin-create-button admin-edit-submit-button" type="submit">Update</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                              </div>
                         <%})%>
                     </div>
                 </div>

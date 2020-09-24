@@ -5,18 +5,108 @@ const aws = require('../utils/S3');
 const db = require('../models/index');
 const HummusRecipe = require('hummus-recipe');
 
+// Acepts an offset value and a callback.
+// This function retrieves a list of books after the specified offset and calls
+// the callback function received passing in te list.
+function getBooks(offset = 0, callback){
+    db.Book.findAll({ offset: offset, limit: 10, include: [ { model: db.Vendor } ]})
+    .then(books => {
+        callback(books);
+    })
+    .catch(err => {
+        if(err) throw err;
+    })
+}
+
+function deleteBucket(isbn){
+    let bucketParams = {
+        Bucket: isbn
+    }
+    aws.S3.listObjectsV2(bucketParams, (err, pages) => {
+        if(err) throw err;
+        let objects = [];
+        pages.Contents.forEach(page => {
+            objects.push({ Key: page.Key });
+        });
+        let deleteObjectsParams = { Bucket: isbn };
+        deleteObjectsParams.Delete = { Objects: objects };
+        aws.S3.deleteObjects(deleteObjectsParams, (err, data) => {
+            if(err) throw err;
+            if(data)
+                deleteBucket(bucketParams)
+            aws.S3.deleteBucket(bucketParams, (err, data) => {
+                if(err) throw err;
+                console.log(data);
+            });
+        });
+    });
+}
+
+// Read in the passed in page.
+function uploadPage(outputDir, isbn, page, linkAdded){
+    fs.readFile(path.join(outputDir, page), (err, upload) => {
+        if(err) throw err;
+        // Create the S3 upload's parameter Object.
+        let params = {
+            Bucket: isbn,
+            Key: page,
+            Body: upload,
+            ContentType: 'application/pdf',
+            ACL: 'public-read'
+        }
+        // Upload the page.
+        aws.S3.upload(params, (err, data) => {
+            if(err) {
+                console.log(err);
+            }
+            else {
+                if(!linkAdded){
+                    db.Book.update({ link: data.Location }, { where: { isbn: isbn } })
+                    .then(() => {
+                        // console.log('link added');
+                    })
+                    .catch(err => {
+                        if(err) throw err;
+                    });
+                }
+            }
+        });
+    });
+}
+
+// Read in the directory which contains the individuals pages of the PDF.
+function importPages(isbn, outputDir){
+    // Read in the all the directory content which stores the PDF pages locally.
+    fs.readdir(outputDir, (err, pages) => {
+        if(err) throw err;
+        let linkAdded = false;
+        // Iterate through each page and call the upload function.
+        async.each(pages, (page, callback) => {
+            if(!linkAdded){
+                uploadPage(outputDir, isbn, page, linkAdded);
+                linkAdded = true;
+            }else{
+                uploadPage(outputDir, isbn, page, linkAdded);
+            }
+        }, 
+        (err) => {
+            if(err) throw err;
+        });
+    });
+}
+
 // Uploads the given PDF file to AWS S3 storage.
 function uploadToAws(file, isbn){
-    const fullPDFLocation = path.join(__dirname, '../', 'utils', 'bookUploadStorage', file.filename);
     const outputDir = path.join(__dirname, '../', 'utils', 'bookSplitStorage', file.filename);
 
     // Creates a temporary directory to hold the split up PDF pages.
-    fs.mkdirSync(outputDir);
-
+    fs.mkdir(outputDir, (err) => {
+        if(err) throw err;
+    });
     // Create a new HummusRecipe instance and pass in the local file location which temporarily
     // stores the unsplit PDF file.
-    const pdf = new HummusRecipe(fullPDFLocation);
     // Split the PDF.
+    const pdf = new HummusRecipe(path.join(__dirname, '../', 'utils', 'bookUploadStorage', file.filename));
     pdf.split(outputDir, isbn).endPDF();
 
     // Create an AWS S3 bucket for the book to be uploaded.
@@ -25,37 +115,7 @@ function uploadToAws(file, isbn){
     aws.createBucket(isbn, 'public-read-write')
     .then(result => {
         if(result){
-            // Read in the all the directory content which stores the PDF pages locally.
-            let pages = fs.readdirSync(outputDir);
-            let linkAdded = false;
-            // Iterate through each page.
-            async.each(pages, (page, callback) => {
-                // Read in the page.
-                let upload = fs.readFileSync(path.join(outputDir, page));
-                // Create the S3 upload's parameter Object.
-                let params = {
-                    Bucket: isbn,
-                    Key: page,
-                    Body: upload,
-                    ContentType: 'application/pdf',
-                    ACL: 'public-read'
-                }
-                // Upload the page.
-                aws.S3.upload(params, (err, data) => {
-                    if(err) {
-                        console.log(err);
-                    }
-                    else {
-                        if(!linkAdded){
-                            db.Book.update({ link: data.Location }, { where: { isbn: isbn } });
-                            linkAdded = true;
-                        }
-                    }
-                });
-            }, 
-            (err) => {
-                if(err) throw err;
-            });
+            importPages(isbn, outputDir);
         }
     })
     .catch(err => {
@@ -68,8 +128,7 @@ function uploadToAws(file, isbn){
 // books to send back, if an offset is not available it will default to 1
 module.exports.getDashboard = (req, res, next) => {
     const offset = parseInt(req.query.offset);
-    db.Book.findAll({ offset: offset, limit: 10, include: [ { model: db.Vendor, key: 'id' } ]})
-    .then(books => {
+    getBooks(offset, (books) => {
         db.Vendor.findAll()
         .then(vendors => {
             res.render('admin-dashboard', { title: 'adminDB', books: books, vendors: vendors });
@@ -77,9 +136,6 @@ module.exports.getDashboard = (req, res, next) => {
         .catch(err => {
             throw err;
         });
-    })
-    .catch(err => {
-        throw err;
     });
 };
 
@@ -96,16 +152,25 @@ module.exports.postBook = (req, res, next) => {
     .then(book => {
         if(book){
             uploadToAws(req.file, isbn);
-            db.Book.findAll({ offset: 0, limit: 10, include: [ { model: db.Vendor, key: 'id' } ]})
-            .then(books => {
+            getBooks(0, (books) => {
                 res.send(JSON.stringify(books));
-            })
-            .catch(err => {
-                throw err;
             });
         }
     })
     .catch(err => {
         throw err;
     });
+}
+
+module.exports.deleteBook = (req, res, next) => {
+    db.Book.destroy({ where: { isbn: req.query.isbn } })
+    .then(() => {
+        deleteBucket(req.query.isbn);
+        getBooks((books) => {
+            res.send(JSON.stringify(books));
+        });
+    })  
+    .catch(err => {
+        if(err) throw err;
+    }); 
 }

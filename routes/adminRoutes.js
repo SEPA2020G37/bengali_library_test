@@ -23,4 +23,7 @@ Router.get('/admin_dashboard', adminController.getDashboard);
 // storage and also update the database for new additions.
 Router.post('/add-book', upload.single('book'), adminController.postBook);
 
+// Route to delete a book from the admin console.
+Router.get('/delete-book', adminController.deleteBook);
+
 module.exports = Router;

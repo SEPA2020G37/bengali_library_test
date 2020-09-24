@@ -156,3 +156,18 @@ body {
 .admin-create-button:hover {
   background-color: #2ba74c;
 }
+
+.admin-record-edit-button {
+  background-color: white;
+  border: none;
+}
+
+.admin-edit-collapse {
+  background-color: #f0eeee;
+  border-radius: 15px;
+}
+
+.admin-edit-submit-button {
+  height: 50%;
+  margin: 25% 0 25% 0;
+}
