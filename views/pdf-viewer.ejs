@@ -1,0 +1,22 @@
+<%- include('includes/head.ejs') %>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/userStylesheet.css" type="text/css">
+    <script src="//mozilla.github.io/pdf.js/build/pdf.js"></script>
+    <script src="js/pdf-viewer.js"></script>
+    <link rel="stylesheet" href="css/glide.core.min.css">
+    <link rel="stylesheet" href="css/glide.theme.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap" rel="stylesheet">
+    <title><%= title %></title>  
+</head> 
+<body>
+    <div class="container-fluid">
+    <%- include('includes/user-nav.ejs') %>
+        <div class="row content" >
+            <embed id="embed" src="<%= link %>" type="application/pdf" style="height: 900px; width: 100%;" data-isbn="<%= isbn %>" data-page="<%= page %>"/>   
+                <div class="glide__arrows" data-glide-el="controls">
+                    <button class="glide__arrow glide__arrow--left" data-glide-dir="<" button id="prev" onclick="prev()"><img src="resources/arrow.png" height="30px" /></button>
+                    <button class="glide__arrow glide__arrow--right" data-glide-dir=">" button id="next" onclick="next()"><img src="resources/arrow right.png" height="30px" /></button>
+                </div>
+        </div>
+    </div>
+<%- include('includes/foot.ejs') %>

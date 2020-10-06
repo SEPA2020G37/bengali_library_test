@@ -4,6 +4,8 @@
   "description": "This is the main repository for group 37 of software engineering project A 2020",
   "main": "app.js",
   "scripts": {
+    "move-static": "cp -a ./node_modules/@pdftron/webviewer/public/. ./dist/public/webviewer",
+    "build": "mybuildscript && npm run move-static",
     "start": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -23,8 +25,11 @@
   },
   "homepage": "https://github.com/SEPA2020G37/bengali_library_test#readme",
   "dependencies": {
+    "@glidejs/glide": "^3.4.1",
+    "@pdftron/webviewer": "^7.0.1",
     "async": "^3.2.0",
     "aws-sdk": "^2.750.0",
+    "base64topdf": "^1.1.8",
     "bcrypt": "^5.0.0",
     "body-parser": "^1.19.0",
     "connect-ensure-login": "^0.1.1",
@@ -38,8 +43,12 @@
     "mysql2": "^2.1.0",
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",
+    "pdf-parse": "^1.1.1",
+    "pdf-stream": "^1.3.2",
+    "pdfjs": "^2.4.1",
     "sequelize": "^6.3.4",
-    "sequelize-cli": "^6.2.0"
+    "sequelize-cli": "^6.2.0",
+    "stream-buffers": "^3.0.2"
   },
   "devDependencies": {
     "nodemon": "^2.0.4"

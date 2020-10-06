@@ -1,9 +1,85 @@
 <%- include('includes/head.ejs') %>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <!-- <link rel="stylesheet" href="css/adminStylesheet.css" type="text/css"> -->
+    <link rel="stylesheet" href="css/userStylesheet.css" type="text/css">
+    <link rel="stylesheet" href="css/glide.core.min.css">
+    <link rel="stylesheet" href="css/glide.theme.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap" rel="stylesheet">
     <title><%= title %></title>  
 </head> 
 <body>
-    <h1>User Dashboard!</h1>
+    <div class="container-fluid">
+    <%- include('includes/user-nav.ejs') %>
+        <div class="row content">
+            <div class="col">
+                <br />
+                <p class="h2">Continue Reading</p>
+                <div class="glide">
+                    <div class="glide__track" data-glide-el="track">
+                        <ul class="glide__slides">
+                            <% books.forEach((book) => {%>
+                                <li class="glide__slide" style="width: 275px;">
+                                    <div class="card">
+                                        <img
+                                        class="card-img-top"
+                                        src="https://<%= book.isbn %>.s3.amazonaws.com/<%= book.isbn %>-1.jpg"
+                                        alt="Card image cap"
+                                        /> 
+                                    </div> 
+                                    <div class="card-body">
+                                        <h5 class="card-title"><%= book.title %></h5>
+                                        <a href="/view?data=<%= book.isbn %>" class="btn btn-primary">Read</a>
+                                    </div>
+                                </li>
+                            <%})%>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <br />
+                <p class="h2">WishList</p>
+                <div class="glide">
+                    <div class="glide__track" data-glide-el="track">
+                        <ul class="glide__slides">
+                            <% wishBooks.forEach((wish) => {%>
+                                <li class="glide__slide">
+                                    <div class="card">
+                                        <img
+                                        class="card-img-top"
+                                        src="https://<%= wish.isbn %>.s3.amazonaws.com/<%= wish.isbn %>-1.jpg"
+                                        alt="Card image cap"
+                                        /> 
+                                    </div> 
+                                    <div class="card-body">
+                                        <h5 class="card-title"><%= wish.title %></h5>
+                                        <a href="/view?data=<%= wish.isbn %>" class="btn btn-primary">Check</a>
+                                    </div>
+                                </li>
+                            <%})%>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/@glidejs/glide"></script>
+        <script>
+            const sliders = document.querySelectorAll(".glide");
+            const config = {
+            type: "carousel",
+            startAt: 0,
+            perView: 6,
+            breakpoints: {
+                1700: {
+                perView: 4,
+                },
+                900: {
+                perView: 2,
+                },
+            },
+            };
+            sliders.forEach((item) => {
+            new Glide(item, config).mount();
+            });
+        </script>
+    </div>
     <%- include('includes/foot.ejs') %>
