@@ -3,9 +3,11 @@ const express = require('express');
 const flash = require('connect-flash');
 const db = require('./models/index.js');
 const bodyParser = require('body-parser');
+const dotenv = require('dotenv').config();
 const passportConfig = require('./auth/passport');
 const expressSession = require('express-session');
 const authRoutes = require('./routes/authRoutes');
+const adminRoutes = require('./routes/adminRoutes');
 
 // Set up the local strategy for Passport based authentication
 passportConfig.setStrategy();
@@ -39,6 +41,7 @@ app.use(passportConfig.passportSession);
 
 // Route middleware
 app.use(authRoutes);
+app.use(adminRoutes);
 
 // Start the node server
 app.listen(8080, () => {

@@ -1,0 +1,195 @@
+html {
+  scroll-behavior: smooth;
+}
+
+.navbar {
+  background-color: #27496D !important;
+  padding-bottom: 20px !important;
+  padding-top: 30px !important;
+}
+
+.navbar a:hover {
+  color: #e8b923 !important;
+}
+
+.navbar .nav-link {
+  padding-right: 20px !important;
+  padding-top: 10px !important;
+}
+
+.my-button {
+  color: #e8b923;
+  border: 1px solid #e8b923;
+}
+
+.my-button:hover {
+  background-color: #D4AF37;
+  border: #d6a63e;
+}
+
+.my-row {
+  padding-top: 20ex;
+}
+
+body {
+  height: 100%;
+}
+
+.table-row, .table-header {
+  margin: 1% 0;
+  padding: .5% .5%;
+}
+
+.row-item, .header-item {
+  padding: .5%;
+  overflow: hidden;
+}
+
+.main {
+  height: 100%;
+  margin-top: 160px;
+  width: 100%;
+}
+
+.sidebar {
+  background-color: #a5a4a4;
+  height: 100%;
+  left: 0;
+  overflow-x: hidden;
+  position: fixed;
+  opacity: 80%;
+  text-align: center;
+  -webkit-transition: 0.35s;
+  transition: 0.35s;
+  top: 160px;
+  width: 0;
+  z-index: 1;
+}
+
+.admin-sidebar-button {
+  color: white;
+  display: block;
+  font-family: 'Ubuntu', sans-serif;
+  font-size: 1.2rem;
+  left: 50%;
+  margin-right: -50%;
+  margin-top: 30%;
+  position: relative;
+  text-decoration: none !important;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  -webkit-transition: 0.35s;
+  transition: 0.35s;
+  width: 50%;
+}
+
+.admin-sidebar-button:hover {
+  color: #27496d;
+  opacity: 100%;
+}
+
+.sidebar-show {
+  width: 200px;
+}
+
+.data-section-retract {
+  margin-left: 200px;
+}
+
+.data-section {
+  -webkit-transition: 0.35s;
+  transition: 0.35s;
+}
+
+.admin-sidebar-toggler {
+  background-color: #27496d;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  -webkit-transition: 0.35s;
+  transition: 0.35s;
+  width: 85px;
+  height: 50px;
+  padding: 11px;
+}
+
+.admin-sidebar-toggler-active {
+  background-color: white;
+  border: 2px solid #27496d;
+  color: #27496d;
+  -webkit-transition: 0.35s;
+  transition: 0.35s;
+}
+
+.data-table {
+  margin: 1% 1%;
+}
+
+.table-rows {
+  height: 62vh;
+  overflow-y: scroll;
+}
+
+.table-row {
+  border-radius: 15px;
+  -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.25);
+          box-shadow: 0 3px 6px rgba(0, 0, 0, 0.25);
+  padding-top: 20px;
+}
+
+.row-item {
+  font-family: 'Ubuntu', sans-serif;
+  font-size: .9rem;
+}
+
+.header-item {
+  font-family: 'Ubuntu', sans-serif;
+  font-weight: 900;
+}
+
+.admin-create-button {
+  border: none;
+  background-color: #38d161;
+  border-radius: 7px;
+  color: white;
+  font-family: 'Ubuntu', sans-serif;
+  padding: 15px;
+}
+
+.admin-create-button:hover {
+  background-color: #2ba74c;
+}
+
+.admin-record-edit-button {
+  background: none;
+  border: none;
+}
+
+.admin-edit-collapse {
+  background-color: #f0eeee;
+  border-radius: 15px;
+}
+
+.admin-edit-submit-button {
+  height: 50%;
+  margin: 25% 0 25% 0;
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+.mask {
+  pointer-events: none;
+  opacity: 0.5;
+  background: #CCC;
+}
+
+.spinner-custom-style {
+  height: 4rem;
+  margin-right: -50%;
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  width: 4rem;
+}

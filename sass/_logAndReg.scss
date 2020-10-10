@@ -1,0 +1,60 @@
+$primary-color: rgba(39, 73, 109, 0.98);
+
+body{
+    background-color: $primary-color;
+}
+
+.input-field{
+    border: 1px solid $primary-color;
+    background-color: rgb(255, 255, 255);
+    border-radius: 25px;
+    color: $primary-color;
+    height: 20px;
+    padding-bottom: 4px;
+    width: 80%;
+}
+
+.submit{
+    border: 1px solid $primary-color;
+    background-color: $primary-color;
+    border-radius: 25px;
+    box-shadow: 1px 3px #999;
+    color: rgb(255, 255, 255);
+    height: 40px;
+    width: 100%;
+}
+
+.submit:hover{
+    background-color: $primary-color;
+    box-shadow: 0 2px rgb(117, 116, 116);
+    transition-duration: .2s;
+}
+
+.warning-message-banner{
+    color: rgb(255, 255, 255);
+    background-color: rgb(207, 19, 59);
+    height: 48px;
+    left: 0;
+    position: fixed;
+    text-align: center;
+    transition: height .5s;
+    top: 0;
+    width: 100%;
+
+    p{
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        margin: 0;
+        padding: 15px 0;
+    }
+}
+
+.opposing-action-text, .opposing-action-link{
+    color: $primary-color;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: .8rem;
+    text-decoration: none;
+}
+
+.opposing-action-link{
+    font-weight: bold;
+}

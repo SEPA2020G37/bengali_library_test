@@ -1,0 +1,168 @@
+$colorPrimary: rgb(39, 73, 109);
+@import "adminNav";
+
+body{
+    height: 100%;
+}
+
+%admin-data-table-row-dimensions{
+    margin: 1% 0;
+    padding: .5% .5%;
+}
+
+%admin-data-table-row-item-dimensions{
+    padding: .5%;
+    overflow: hidden;
+}
+
+.main{
+    height: 100%;
+    margin-top: 160px;
+    width: 100%;
+}
+
+.sidebar{
+    background-color: rgb(165, 164, 164);;
+    height: 100%;
+    left: 0;
+    overflow-x: hidden;
+    position: fixed;
+    opacity: 80%;
+    text-align: center;
+    transition: 0.35s;
+    top: 160px;
+    width: 0;
+    z-index: 1;
+}
+
+.admin-sidebar-button{
+    color: rgb(255, 255, 255);
+    display: block;
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 1.2rem;
+    left: 50%;
+    margin-right: -50%;
+    margin-top: 30%;
+    position: relative;
+    text-decoration: none!important;    
+    transform: translate(-50%, -50%);
+    transition: 0.35s;
+    width: 50%;
+}
+
+.admin-sidebar-button:hover{
+    color: $colorPrimary;
+    opacity: 100%;
+}
+
+// Special class styling for sidebar toggle
+.sidebar-show{
+    width: 200px;
+}
+
+.data-section-retract{
+    margin-left: 200px;
+}
+
+.data-section{
+    transition: 0.35s;
+}
+
+.admin-sidebar-toggler{
+    background-color: $colorPrimary;
+    border: none;
+    border-radius: 5px;
+    color: rgb(255, 255, 255);
+    transition: 0.35s;
+    width: 85px;
+    height: 50px;
+    padding: 11px;
+}
+
+.admin-sidebar-toggler-active{
+    background-color: rgb(255, 255, 255);
+    border: 2px solid $colorPrimary;
+    color: rgb(39, 73, 109);
+    transition: 0.35s;
+}
+
+.data-table{
+    margin: 1% 1%;
+}
+
+.table-rows{
+    height: 62vh;
+    overflow-y: scroll;
+}
+
+.table-row{
+    @extend %admin-data-table-row-dimensions;
+    border-radius: 15px;
+    box-shadow: 0 3px 6px rgba(0,0,0,.25);
+    padding-top: 20px;
+}
+
+.row-item{
+    @extend %admin-data-table-row-item-dimensions;
+    font-family: 'Ubuntu', sans-serif;
+    font-size: .9rem;
+    
+}
+
+.header-item{
+    @extend %admin-data-table-row-item-dimensions;
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: 900;
+}
+
+.table-header{
+    @extend %admin-data-table-row-dimensions;
+}
+
+.admin-create-button{
+    border: none;
+    background-color: rgb(56, 209, 97);
+    border-radius: 7px;
+    color: rgb(255, 255, 255);
+    font-family: 'Ubuntu', sans-serif;
+    padding: 15px;
+
+}
+
+.admin-create-button:hover{
+    background-color: rgb(43, 167, 76);
+}
+
+.admin-record-edit-button{
+    background: none;
+    border: none;
+}
+
+.admin-edit-collapse{
+    background-color: rgb(240, 238, 238);
+    border-radius: 15px;
+}
+
+.admin-edit-submit-button{
+    height: 50%;
+    margin: 25% 0 25% 0;
+}
+
+.clickable{
+    cursor: pointer;
+}
+
+.mask{
+    pointer-events: none;
+    opacity: 0.5;
+    background: #CCC;
+}
+
+.spinner-custom-style{
+    height: 4rem; 
+    margin-right: -50%; 
+    left: 50%; 
+    position: absolute; 
+    top: 50%;
+    width: 4rem; 
+}
