@@ -22,11 +22,12 @@ body{
 }
 
 .sidebar{
-    background-color: rgb(214, 214, 214);;
+    background-color: rgb(165, 164, 164);;
     height: 100%;
     left: 0;
     overflow-x: hidden;
     position: fixed;
+    opacity: 80%;
     text-align: center;
     transition: 0.35s;
     top: 160px;
@@ -51,6 +52,7 @@ body{
 
 .admin-sidebar-button:hover{
     color: $colorPrimary;
+    opacity: 100%;
 }
 
 // Special class styling for sidebar toggle
@@ -97,6 +99,7 @@ body{
     @extend %admin-data-table-row-dimensions;
     border-radius: 15px;
     box-shadow: 0 3px 6px rgba(0,0,0,.25);
+    padding-top: 20px;
 }
 
 .row-item{
@@ -128,4 +131,38 @@ body{
 
 .admin-create-button:hover{
     background-color: rgb(43, 167, 76);
+}
+
+.admin-record-edit-button{
+    background: none;
+    border: none;
+}
+
+.admin-edit-collapse{
+    background-color: rgb(240, 238, 238);
+    border-radius: 15px;
+}
+
+.admin-edit-submit-button{
+    height: 50%;
+    margin: 25% 0 25% 0;
+}
+
+.clickable{
+    cursor: pointer;
+}
+
+.mask{
+    pointer-events: none;
+    opacity: 0.5;
+    background: #CCC;
+}
+
+.spinner-custom-style{
+    height: 4rem; 
+    margin-right: -50%; 
+    left: 50%; 
+    position: absolute; 
+    top: 50%;
+    width: 4rem; 
 }

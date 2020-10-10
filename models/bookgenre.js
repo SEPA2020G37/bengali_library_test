@@ -14,34 +14,6 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   BookGenre.init({
-    bookId: {
-      type: DataTypes.INTEGER,
-      primaryKey: true,
-      allowNull: false,
-      autoIncrement: false,
-      references: {
-        model: 'Books',
-        key: 'id'
-      }
-    },
-    genreId: {
-      type: DataTypes.INTEGER,
-      primaryKey: true,
-      allowNull: false,
-      autoIncrement: false,
-      references: {
-        model: 'Genres',
-        key: 'id'
-      }
-    },
-    createdAt: {
-      allowNull: false,
-      type: DataTypes.DATE
-    },
-    updatedAt: {
-      allowNull: false,
-      type: DataTypes.DATE
-    }
   }, {
     sequelize,
     modelName: 'BookGenre',

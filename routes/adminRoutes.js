@@ -23,4 +23,13 @@ Router.get('/admin_dashboard', adminController.getDashboard);
 // storage and also update the database for new additions.
 Router.post('/add-book', upload.single('book'), adminController.postBook);
 
+// Route to delete a book from the admin console.
+Router.get('/delete-book', adminController.deleteBook);
+
+// Route to edit book details.
+Router.post('/update-book', adminController.editBook);
+
+// Route to serve the admin dashboard's genre view
+Router.get('/admin-genre-info', adminController.getGenreView);
+
 module.exports = Router;
