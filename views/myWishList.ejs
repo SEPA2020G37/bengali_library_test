@@ -13,13 +13,15 @@
             <div class="col">
                 <div class="grid-container">
                     <% books.forEach((book) => {%>
-                        <div class="card">
-                            <img class="card-img-top" src="https://<%= book.isbn %>.s3.amazonaws.com/<%= book.isbn %>-1.jpg" alt="Card image cap">
-                            <div class="card-body">
-                                <h5 class="card-title"><%= book.title %></h5>
-                                <p class="card-text"><%= book.description.substring(0, 30) %>...</p>
-                              </div>
-                        </div>
+                        <a href="/view?data=<%= book.isbn %>">
+                            <div class="card">
+                                <img class="card-img-top" src="https://<%= book.isbn %>.s3.amazonaws.com/<%= book.isbn %>-1.jpg" alt="Card image cap">
+                                <div class="card-body">
+                                    <h5 class="card-title"><%= book.title %></h5>
+                                    <p class="card-text"><%= book.description.substring(0, 30) %>...</p>
+                                </div>
+                            </div>
+                        </a>
                     <%})%>
                 </div>           
             </div>

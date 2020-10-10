@@ -38,3 +38,6 @@ html {
   align-items: center;
   border: none;
 }
+.glide__arrow{
+  top: 65% !important;
+}
