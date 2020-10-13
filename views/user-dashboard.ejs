@@ -10,9 +10,11 @@
     <div class="container-fluid">
     <%- include('includes/user-nav.ejs') %>
         <div class="row content">
-            <div class="col">
+            <h2> Hi, <%= user %></h2>
+            <div class="list">
                 <br />
-                <p class="h2">Continue Reading</p>
+                <% if(Array.isArray(books) && books.length > 0) { %>
+                <p class="h4">Continue Reading</p>
                 <div class="glide">
                     <div class="glide__track" data-glide-el="track">
                         <ul class="glide__slides">
@@ -27,17 +29,32 @@
                                     </div> 
                                     <div class="card-body">
                                         <h5 class="card-title"><%= book.title %></h5>
-                                        <a href="/view?data=<%= book.isbn %>" class="btn btn-primary">Read</a>
+                                        <a href="/view?data=<%= book.isbn %>" class="btn btn-secondary">Read</a>
                                     </div>
                                 </li>
                             <%})%>
                         </ul>
                     </div>
-                </div>
+                    <div class="glide__arrows" data-glide-el="controls">
+                        <button type="button" class="glide__arrow glide__arrow--left btn btn-primary" data-glide-dir="<" button id="prev"><img src="resources/arrow.png" height="30px" /></button>
+                        <button type="button" class="glide__arrow glide__arrow--right btn btn-primary" data-glide-dir=">" button id="next"><img src="resources/arrow right.png" height="30px" /></button>
+                    </div>
+                    <div class="glide__bullets" data-glide-el="controls[nav]">
+                        <% for(var i=0; i< books.length; i++) { %>
+                            <button class="glide__bullet" data-glide-dir="=<% i%>"></button>
+                        <% }%>
+                    </div>
+                    </div>
+                <% } else { %>
+                    <div>
+                        <p class="h4">Look like you don't have any book...</p>
+                    </div>
+                <% }%>
             </div>
-            <div class="col">
+            <div class="list">
                 <br />
-                <p class="h2">WishList</p>
+                <p class="h4">WishList</p>
+                <% if(Array.isArray(books) && books.length > 0) { %>
                 <div class="glide">
                     <div class="glide__track" data-glide-el="track">
                         <ul class="glide__slides">
@@ -52,30 +69,44 @@
                                     </div> 
                                     <div class="card-body">
                                         <h5 class="card-title"><%= wish.title %></h5>
-                                        <a href="/view?data=<%= wish.isbn %>" class="btn btn-primary">Check</a>
+                                        <a href="/view?data=<%= wish.isbn %>" class="btn btn-secondary">Check</a>
                                     </div>
                                 </li>
                             <%})%>
                         </ul>
                     </div>
+                    <div class="glide__arrows" data-glide-el="controls">
+                        <button type="button" class="glide__arrow glide__arrow--left btn btn-primary" data-glide-dir="<" button id="prev"><img src="resources/arrow.png" height="30px" /></button>
+                        <button type="button" class="glide__arrow glide__arrow--right btn btn-primary" data-glide-dir=">" button id="next"><img src="resources/arrow right.png" height="30px" /></button>
+                    </div>
+                    <div class="glide__bullets" data-glide-el="controls[nav]">
+                        <% for(var i=0; i< books.length; i++) { %>
+                            <button class="glide__bullet" data-glide-dir="=<% i%>"></button>
+                        <% }%>
+                    </div>
                 </div>
+                <% } else { %>
+                    <div>
+                        <p> You currently have 0 book.</p>
+                    </div>
+                <% }%>
             </div>
         </div>
         <script src="https://cdn.jsdelivr.net/npm/@glidejs/glide"></script>
         <script>
             const sliders = document.querySelectorAll(".glide");
             const config = {
-            type: "carousel",
-            startAt: 0,
-            perView: 6,
-            breakpoints: {
-                1700: {
-                perView: 4,
+                type: "carousel",
+                startAt: 0,
+                perView: 6,
+                breakpoints: {
+                    1700: {
+                    perView: 4,
+                    },
+                    900: {
+                    perView: 2,
+                    },
                 },
-                900: {
-                perView: 2,
-                },
-            },
             };
             sliders.forEach((item) => {
             new Glide(item, config).mount();

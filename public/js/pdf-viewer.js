@@ -38,10 +38,6 @@ function next() {
 
 function getNewPdf(link, pageNumber) {
   var embed = document.getElementById("embed");
-  var clone = embed.cloneNode(true);
-
-  clone.setAttribute("src", link);
-  clone.dataset.page = pageNumber;
-
-  embed.parentNode.replaceChild(clone, embed);
+  embed.setAttribute("src",link);
+  embed.dataset.page = pageNumber;
 }

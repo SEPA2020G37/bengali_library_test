@@ -3,7 +3,6 @@ const path = require("path");
 const async = require("async");
 const aws = require("../utils/S3");
 const db = require("../models/index");
-const glide = require("@glidejs/glide");
 const { resolve } = require("path");
 
 module.exports.getDashboard = (req, res, next) => {
@@ -12,6 +11,7 @@ module.exports.getDashboard = (req, res, next) => {
     getUserWishList(req.user.id).then((wishBooks)=>{
       res.render("user-dashboard", {
         title: "userDB",
+        user: req.user.firstName,
         books: books,
         wishBooks: wishBooks,
       });      
@@ -30,31 +30,25 @@ module.exports.getBook = (req, res) => {
     include: [{ model: db.UserBookList, where: { userId: req.user.id } }],
   })
   .then((bookCount)=>{
+    var own;
     if(bookCount == 0){
-      getBook(data).then(([vendor,book])=>{
-        getRecommendBooks(book.isbn).then((books)=>{
-          res.render("book", {
-            title: "book",
-            book: book,
-            recommendBooks: books,
-            vendor: vendor,
-            own: false,
-          });          
-        })
-      })
+      own = false;
     }else{
-      getBook(data).then(([vendor,book])=>{
-        getRecommendBooks(book.isbn).then((books)=>{
-          res.render("book", {
-            title: "book",
-            book: book,
-            recommendBooks: books,
-            vendor: vendor,
-            own: true,
-          });          
-        })
-      })
+      own = true;
     }
+    getBook(data).then(([vendor,book])=>{
+      getRecommendBooks(req.user.id,book.isbn).then((books)=>{
+        console.log(books);
+        res.render("book", {
+          title: "book",
+          user: req.user.firstName,
+          book: book,
+          recommendBooks: books,
+          vendor: vendor,
+          own: own,
+        });          
+      })
+    })
   })
 };
 
@@ -70,6 +64,7 @@ module.exports.pdfViewer = (req, res, next) => {
 
     res.render("pdf-viewer", {
       title: "pdf-viewer",
+      user: req.user.firstName,
       isbn: isbn,
       page: userBookListsBook.currentPage,
       link: src,
@@ -81,6 +76,7 @@ module.exports.booklist = (req, res, next) => {
   getUserBookList(req.user.id).then((books)=>{
     res.render("mybooks", {
       title: "my book list",
+      user: req.user.firstName,
       books: books,
     });      
   });
@@ -90,6 +86,7 @@ module.exports.wishList = (req, res, next) => {
   getUserWishList(req.user.id).then((wishBooks)=>{
     res.render("myWishList", {
       title: "my book list",
+      user: req.user.firstName,
       books: wishBooks,
     });      
   });
@@ -143,17 +140,21 @@ module.exports.prev = (req, res) => {
     });
 };
 
-function getRecommendBooks(isbn){
+function getRecommendBooks(userId,isbn){
   return new Promise((resolve,reject)=>{
     db.Book.findOne({
       where: {isbn:isbn},
     })
     .then((book)=>{
       db.Book.findAll({
-        where: {vendorId: book.vendorId}
+        where: {
+          isbn: {
+            [db.Sequelize.Op.ne]: isbn
+          }
+        },
       })
       .then((books)=>{
-        if(books) resolve(books);
+        if(books)resolve(books);
       })
       .catch((err)=>{
         if(err) reject(err);
@@ -223,6 +224,27 @@ function getUserBookListsBook(userId, isbn) {
         where: { bookId: book.id, UserBookListId: book.UserBookLists[0].id },
       })
         .then((UserBookListBook) => {
+          if (UserBookListBook) resolve(UserBookListBook);
+        })
+        .catch((err) => {
+          if (err) reject(err);
+        });
+    });
+  });
+};
+
+function getBookIdThatUserHad(userId) {
+  return new Promise((resolve, reject) => {
+    db.UserBookList.findOne({
+      attributes: ['id'],
+      where: { userId: userId },
+    }).then((userBookListId) => {
+      db.UserBookListBook.findAll({
+        attributes: ['bookId'],
+        where: { UserBookListId: userBookListId },
+      })
+        .then((UserBookListBook) => {
+          console.log(UserBookListBook);
           if (UserBookListBook) resolve(UserBookListBook);
         })
         .catch((err) => {

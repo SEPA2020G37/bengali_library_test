@@ -21,7 +21,9 @@
                           <div class="thumbnail-action">
                             <%if(own){%>
                               <a href="/pdf-viewer?isbn=<%= book.isbn %>" class="thumbnail-action-button">Read</a>
-                            <% } %>
+                            <% }else{ %>
+                              <a href="#" class="thumbnail-action-button">Add to Cart</a>
+                            <% }%>
                           </div>
                           <!-- /.thumbnail-action -->
                         </div>
@@ -52,26 +54,26 @@
                     </article>
                   </div>
                   <!-- /.container -->
-                  <div class="secondary">
-                  <div class="container">
-                    <h2>You might also like</h2>
-                    <ul class="gallery">
-                      <% recommendBooks.forEach((rBook) => {%>
-                        <li>
-                          <a href="/view?data=<%= rBook.isbn %>"
-                            ><img src="https://<%= rBook.isbn %>.s3.amazonaws.com/<%= rBook.isbn %>-1.jpg" alt="Book cover"
-                          /></a>
-                        </li>                       
-                      <%})%>
-                    </ul>
-                    <!-- /.gallery -->
-                  </div>
-                  
-                  </div>
 
 
             </div>
               <!-- /.section -->
+              <div class="secondary">
+                <div class="container">
+                  <h2>You might also like</h2>
+                  <ul class="gallery">
+                    <% recommendBooks.forEach((rBook) => {%>
+                      <li>
+                        <a href="/view?data=<%= rBook.isbn %>"
+                          ><img src="https://<%= rBook.isbn %>.s3.amazonaws.com/<%= rBook.isbn %>-1.jpg" alt="Book cover"
+                        /></a>
+                      </li>                       
+                    <%})%>
+                  </ul>
+                  <!-- /.gallery -->
+                </div>
+                
+                </div>
 
           </div>
         </div>
