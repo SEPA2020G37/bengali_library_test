@@ -9,7 +9,7 @@
 
 <body>
     <div id="admin-master-container">
-        <%- include('includes/book-store-nav') %>
+        <%- include('includes/book-store-nav.ejs') %>
         <div id="root" class="row main">
             <div></div>
             <div class="row book-store-center-section">
@@ -53,11 +53,11 @@
                             </div>
                             <div class="col-8">
                                 <div class="book-store-card-buttons">
-                                    <% if(!user){ %>
+                                    <% if(user){ %>
                                     <button type="button" data-book-id="<%= book.id %>" data-book-title="<%= book.title %>"
                                         data-book-price="<%= book.price %>"
                                         data-book-img="https://<%= book.isbn %>.s3.amazonaws.com/<%= book.isbn %>-1.jpg"
-                                        data-user-id="7" class="add-to-cart"><img src="resources/add-to-cart.png"
+                                        data-user-id="<%= user.id %>" class="add-to-cart"><img src="resources/add-to-cart.png"
                                             alt="btn"></button>
                                     <% } %>
                                     <button type="button"><img src="resources/magnifier.png" alt="btn"></button>
@@ -147,5 +147,6 @@
 <script src="https://checkout.stripe.com/checkout.js" defer></script>
 <script>
     let secretKey = '<%= stripeKey %>';
+    console.log(secretKey);
 </script>
 <%- include('includes/foot.ejs') %>

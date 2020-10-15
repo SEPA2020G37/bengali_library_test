@@ -7,11 +7,13 @@ const { resolve } = require("path");
 
 module.exports.getDashboard = (req, res, next) => {
   //here will get all the book that the user having
+
+  console.log(req.user);
   getUserBookList(req.user.id).then((books)=>{
     getUserWishList(req.user.id).then((wishBooks)=>{
       res.render("user-dashboard", {
         title: "userDB",
-        user: req.user.firstName,
+        user: req.user,
         books: books,
         wishBooks: wishBooks,
       });      
@@ -21,9 +23,6 @@ module.exports.getDashboard = (req, res, next) => {
 
 module.exports.getBook = (req, res) => {
   let data = req.query.data;
-  console.log(req.user);
-   
-
   db.Book.count({
     where: {isbn: data},
     include: [{ model: db.UserBookList, where: { userId: req.user.id } }],
@@ -40,7 +39,7 @@ module.exports.getBook = (req, res) => {
         console.log(books);
         res.render("book", {
           title: "book",
-          user: req.user.firstName,
+          user: req.user,
           book: book,
           recommendBooks: books,
           vendor: vendor,
@@ -63,7 +62,7 @@ module.exports.pdfViewer = (req, res, next) => {
 
     res.render("pdf-viewer", {
       title: "pdf-viewer",
-      user: req.user.firstName,
+      user: req.user,
       isbn: isbn,
       page: userBookListsBook.currentPage,
       link: src,
@@ -75,7 +74,7 @@ module.exports.booklist = (req, res, next) => {
   getUserBookList(req.user.id).then((books)=>{
     res.render("mybooks", {
       title: "my book list",
-      user: req.user.firstName,
+      user: req.user,
       books: books,
     });      
   });
@@ -85,7 +84,7 @@ module.exports.wishList = (req, res, next) => {
   getUserWishList(req.user.id).then((wishBooks)=>{
     res.render("myWishList", {
       title: "my book list",
-      user: req.user.firstName,
+      user: req.user,
       books: wishBooks,
     });      
   });

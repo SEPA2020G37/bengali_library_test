@@ -73,7 +73,7 @@ module.exports.getBookStore = (req, res, next) => {
         db.Genre.findAll()
         .then(genre => {
             res.render('book-store', 
-                { title: "book Store", user: null, books: books, genre: genre, stripeKey: process.env.STRIPE_PUBLISHABLE_KEY }
+                { title: "book Store", user: req.user, books: books, genre: genre, stripeKey: process.env.STRIPE_PUBLISHABLE_KEY }
             );
         })
         .catch(err => {

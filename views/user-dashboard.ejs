@@ -8,9 +8,9 @@
 </head> 
 <body>
     <div class="container-fluid">
-    <%- include('includes/user-nav.ejs') %>
+    <%- include('includes/nav.ejs') %>
         <div class="row content">
-            <h2> Hi, <%= user %></h2>
+            <h2> Hi, <%= user.firstName %></h2>
             <div class="list">
                 <br />
                 <% if(Array.isArray(books) && books.length > 0) { %>
