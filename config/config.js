@@ -1,8 +1,8 @@
 module.exports = {
   development: {
     username: "root",
-    password: "",
-    database: "localRDS",
+    password: "Chamath_123",
+    database: "LocalRDS",
     host: "127.0.0.1",
     dialect: "mysql"
   },

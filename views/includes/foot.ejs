@@ -8,5 +8,17 @@
         <!-- custom Js -->
         <script src="js/app.js"></script>
         <script src="js/cart.js" defer></script>
+        <script>
+            var prevScrollpos = window.pageYOffset;
+            window.onscroll = function() {
+            var currentScrollPos = window.pageYOffset;
+            console.log("prev: "+prevScrollpos+", current: "+currentScrollPos);
+              if (currentScrollPos < 100) {
+                document.getElementById("navbar").style.top = "0";
+              } else {
+                document.getElementById("navbar").style.top = "-105px";
+              }
+            }
+        </script>
     </body>
 </html>

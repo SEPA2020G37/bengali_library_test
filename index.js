@@ -9,6 +9,7 @@ const expressSession = require('express-session');
 const authRoutes = require('./routes/authRoutes');
 const adminRoutes = require('./routes/adminRoutes');
 const bookStoreRoutes = require('./routes/bookStoreRoutes');
+const userRoutes = require('./routes/userRoutes');
 
 // Set up the local strategy for Passport based authentication
 passportConfig.setStrategy();
@@ -47,6 +48,7 @@ app.use(passportConfig.passportSession);
 app.use(authRoutes);
 app.use(adminRoutes);
 app.use(bookStoreRoutes);
+app.use(userRoutes);
 
 // Start the node server
 app.listen(8080, () => {
