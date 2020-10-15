@@ -1,0 +1,151 @@
+    <%- include('includes/head.ejs') %>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/adminStylesheet.css" type="text/css">
+    <link rel="stylesheet" href="css/bookStore.css" type="text/css">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Chewy&family=Lato:wght@700&display=swap" rel="stylesheet">
+    <title><%= title %></title>
+</head>
+
+<body>
+    <div id="admin-master-container">
+        <%- include('includes/book-store-nav') %>
+        <div id="root" class="row main">
+            <div></div>
+            <div class="row book-store-center-section">
+                <div class="book-store-filter-pane col-3">
+                    <div class="filters-main">
+                        <h6 class="filters-main-heading">Filters</h6>
+                        <div class="filters-body">
+                            <div>
+                                <p><b>Genre</b></p>
+                                <% for(let g of genre){ %>
+                                <label>
+                                    <input type="checkbox" name="genre" value="<%= g.id %>">
+                                    <span><%= g.genre %></span>
+                                </label>
+                                <br>
+                                <% } %>
+                                <br>
+                            </div>
+                            <div>
+                                <p><b>Price Range</b></p>
+                                <label>
+                                    From&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; To<br>
+                                    <input type="number" name="price-floor" step="1" min="1" max="1000">
+                                    &nbsp;&nbsp;
+                                    <input type="number" name="price-ceil" step="1" min="1" max="1000">
+                                </label>
+                                <br>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-9 book-store-book-grid">
+                    <% for(let book of books){ %>
+                    <div class="card book-card">
+                        <h5 class="card-title book-title"><%= book.title %></h5>
+                        <img class="card-img-top book-img"
+                            src="https://<%= book.isbn %>.s3.amazonaws.com/<%= book.isbn %>-1.jpg" alt="Book Image">
+                        <div class="card-body row card-center no-gutters">
+                            <div class="col-4">
+                                $<%= book.price %>
+                            </div>
+                            <div class="col-8">
+                                <div class="book-store-card-buttons">
+                                    <% if(!user){ %>
+                                    <button type="button" data-book-id="<%= book.id %>" data-book-title="<%= book.title %>"
+                                        data-book-price="<%= book.price %>"
+                                        data-book-img="https://<%= book.isbn %>.s3.amazonaws.com/<%= book.isbn %>-1.jpg"
+                                        data-user-id="7" class="add-to-cart"><img src="resources/add-to-cart.png"
+                                            alt="btn"></button>
+                                    <% } %>
+                                    <button type="button"><img src="resources/magnifier.png" alt="btn"></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <% } %>
+                </div>
+            </div>
+            <div></div>
+        </div>
+        <div id="bookOwnedModal" class="modal" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body" style="text-align: center;">
+                        <p><b>You already own this Book!</b></p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">OK</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="purchaseCompleteModal" class="modal" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body" style="text-align: center;">
+                        <div class="row">
+                            <div><img src="resources/flag.png" alt="" class="col-6" style="margin: 10px 0  10px 90px"></div>
+                            <p class="col-6" style="margin-top: 30px; margin-left: 0; color: hsl(129, 64%, 53%)"><b>Purchase Successful!</b></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="cart-main">
+            <div class="cart">
+                <!-- Cart items go here -->
+            </div>
+            <div class="d-flex justify-content-between" style="padding: 10px;">
+                <div><b>Subtotal</b></div>
+                <div id="subtotal"></div>
+            </div>
+            <div class="d-flex justify-content-between" style="padding: 10px;">
+                <span><button type="button" class="btn btn-danger clear-cart" style="width: 155px;">Clear Cart</button></span>
+                <span><button type="button" class="btn btn-success proceed-to-checkout">Proceed To Checkout</button></span>
+            </div>
+        </div>
+        <div class="cart-item-card" style="border: 1px solid hsl(155, 0%, 70%); border-radius: 5px; width: 95%; margin: 4px 10px;" hidden>
+            <div class="row no-gutters">
+                <input type="text" name="bookId" value="" class="hidden-book-id" hidden>
+                <div class="cart-item-img col-3">
+                    <img src="" alt="Book" style="width: 90px; height: 160px; margin: 10px;">
+                </div>
+                <div class="cart-item-details col-9">
+                    <div class="row no-gutters">
+                        <div class="cart-item-details-title col-12" style="margin: 10px">
+                            <b>Book:</b> <span class="card-book-title"></span>
+                        </div>
+                    </div>
+
+                    <div class="row no-gutters">
+                        <div class="cart-item-details-title col-12" style="margin: 10px">
+                        <b>Price:</b> <span class="card-book-price"></span>
+                        </div>
+                    </div>
+
+                    <div class="row no-gutters">
+                        <div class="cart-item-details-title col-12" style="margin: 10px">
+                            <b>Qty:</b> <span class="card-book-qty"></span>
+                        </div>
+                    </div>
+
+                    <div class="d-flex justify-content-end">
+                        <button type="button" class="btn btn-danger remove" style="margin-right: 20px">Remove</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="spinner-border text-success spinner-custom-style" role="status" hidden></div>
+</body>
+
+<script src="https://checkout.stripe.com/checkout.js" defer></script>
+<script>
+    let secretKey = '<%= stripeKey %>';
+</script>
+<%- include('includes/foot.ejs') %>

@@ -21,7 +21,6 @@ module.exports.getDashboard = (req, res, next) => {
 
 module.exports.getBook = (req, res) => {
   let data = req.query.data;
-  // console.log(data);
   console.log(req.user);
    
 

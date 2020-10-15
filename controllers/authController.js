@@ -48,10 +48,26 @@ module.exports.postRegister = (req, res, next) => {
                         if(!err){
                             db.User.create({ firstName: firstName, lastName: lastName, email: email, salt: salt, hash: hash, positionId: 1 })
                             .then(user => {
-                                req.login(user, (err) => {
-                                    if(err) throw err;
-                                    else res.render('user-dashboard', { user: req.user });
-                                });
+                                if(user){
+                                    db.UserBookList.create({ userId: user.id, qty: 0 })
+                                    .then(ubl => {
+                                        if(ubl){    
+                                            db.UserWishList.create({ userId: user.id, qty: 0 })
+                                            .then(uwl => { 
+                                                if(uwl) { 
+                                                    req.login(user, (err) => {
+                                                        if(err) { throw err }
+                                                        else {
+                                                            res.render('user-dashboard', { user: req.user }); 
+                                                        }
+                                                    });
+                                                } 
+                                            })
+                                            .catch(err => { if(err) throw err; } );
+                                        }       
+                                    })
+                                    .catch(err => { if(err) throw err; })
+                                }
                             });
                         }else{
                             throw err;

@@ -1,0 +1,131 @@
+body{
+    padding: 0;
+    margin: 0;
+}
+
+#root{
+    height: 100%;
+    margin-right: 0;
+    margin-left: 0;
+    display: grid;
+    grid-template-columns: auto 1000px auto;
+}
+
+#root > div:first-child, #root > div:last-child{
+    background-color: hsl(359, 0%, 96%);
+}
+
+#root > div:first-child{
+    border-right: 1px solid hsl(155, 0%, 70%);
+    box-shadow: -2px 0px 5px 0px inset rgb(155, 155, 155);
+}
+
+#root > div:last-child{
+    border-right: 1px solid hsl(155, 0%, 70%);
+    box-shadow: 2px 0px 5px 0px inset rgb(155, 155, 155);
+}
+
+.book-store-center-section{
+    margin-top: 10px;
+    margin-left: 1px;
+    margin-right: 1px;
+}
+
+.book-store-book-grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+}
+
+.book-card{
+    box-shadow: 1px 1px 3px 0px rgb(155, 155, 155);
+}
+
+.book-img{
+    margin: auto;
+    border-radius: 5%;
+    height: 300px;
+    width: 90%;
+}
+
+.book-store-card-buttons{
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+
+.book-store-card-buttons > button:nth-child(1){
+    border: none;
+    border-radius: 5px 0 0 5px;
+    background-color:hsl(114, 80%, 45%);
+    padding: 5px;
+}
+
+.book-store-card-buttons > button:nth-child(1):hover{
+    background-color: hsl(114, 42%, 55%);
+}
+
+.book-store-card-buttons > button:nth-child(2){
+    border: none;
+    border-radius: 0 5px 5px 0;
+    background-color:#27496D;
+    padding: 5px;
+}
+
+.book-store-card-buttons > button:nth-child(2):hover{
+    background-color: #43668b;
+}
+
+.book-title{
+    font-family: 'Lato', sans-serif;
+    font-weight: 200;
+    margin: 10px 0 5px 20px;
+}
+
+.card-center > div:first-child{
+    font-family: 'Chewy', cursive;
+    font-size: 1.3rem;
+    text-align: center;
+    padding-top: 7px;
+}
+
+.filters-main{
+    border: 1px solid hsl(155, 0%, 70%);
+    padding-left: 10px;
+}
+
+.filters-main-heading{
+    margin-top: 10px;
+    text-align: center;
+}
+
+.filters-body{
+    display: grid;
+    grid-template-columns: 1fr;
+}
+
+#bookOwnedModal, #purchaseCompleteModal{
+    position: fixed; 
+    top: 45%;
+}
+
+.cart-main{
+    overflow-x: hidden;
+    position: fixed;
+    top: 0px;
+    right: 0px;
+    padding-top: 160px;
+    height: 100%;
+    background-color: #fff;
+    transition: 0.35s;
+    width: 0;
+}
+
+.cart-show{
+    width: 400px;
+}
+
+.dark-mask{
+    pointer-events: none;
+    opacity: 0.3;
+    background: hsl(0, 0%, 67%);
+}

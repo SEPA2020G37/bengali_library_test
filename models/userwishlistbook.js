@@ -14,34 +14,6 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   UserWishListBook.init({
-    bookId: {
-      type: DataTypes.INTEGER,
-      primaryKey: true,
-      allowNull: false,
-      autoIncrement: false,
-      references: {
-        model: 'Books',
-        key: 'id'
-      }
-    },
-    userWishListId: {
-      type: DataTypes.INTEGER,
-      primaryKey: true,
-      allowNull: false,
-      autoIncrement: false,
-      references: {
-        model: 'UserWishLists',
-        key: 'id'
-      }
-    },
-    createdAt: {
-      allowNull: false,
-      type: DataTypes.DATE
-    },
-    updatedAt: {
-      allowNull: false,
-      type: DataTypes.DATE
-    }
   }, {
     sequelize,
     modelName: 'UserWishListBook',
