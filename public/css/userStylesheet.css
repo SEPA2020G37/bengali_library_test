@@ -1,10 +1,28 @@
+* {
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+}
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 0px;
+  margin: 0px;
+  color: #0b0b0b;
+}
 html {
   scroll-behavior: smooth;
 }
+.btn-primary {
+  color: #fff;
+  background-color: #007bff !important;
+  border-color: #007bff !important;
+}
+.nav-row{
+  top:0;
+}
 .navbar {
   background-color: #27496d !important;
-  padding-bottom: 20px !important;
-  padding-top: 30px !important;
+  padding: 20px !important;
 }
 #navbar{
 	transition: top 0.5s
@@ -14,10 +32,21 @@ html {
 }
 .navbar .nav-link {
   padding-right: 1rem !important;
-  padding-top: 5rem !important;
+  text-align: center;
+}
+.dropdown-menu{
+  text-align: center;
 }
 .content {
-  padding-top: 20ex;
+  margin-top: 20ex;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+.list{
+  width: 100%;
+}
+.card{
+  border: none;
 }
 .card-img-top{
   height: 400px;
@@ -25,6 +54,9 @@ html {
   display: block;
   margin-left: auto;
   margin-right: auto;
+}
+.card-body{
+  text-align: center;
 }
 
 .grid-container{
@@ -37,4 +69,13 @@ html {
   text-align: center;
   align-items: center;
   border: none;
+}
+.secondary{
+  bottom: 0;
+  width: 90%;
+  margin-left: 5%;
+  margin-right: 5%;
+}
+.glide__bullet--active {
+  background-color: darkgray !important;
 }
