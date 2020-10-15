@@ -14,34 +14,6 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   BookOrder.init({
-    bookId: {
-      type: DataTypes.INTEGER,
-      primaryKey: true,
-      allowNull: false,
-      autoIncrement: false,
-      references: {
-        model: 'Books',
-        key: 'id'
-      }
-    },
-    orderId: {
-      type: DataTypes.INTEGER,
-      primaryKey: true,
-      allowNull: false,
-      autoIncrement: false,
-      references: {
-        model: 'Orders',
-        key: 'id'
-      }
-    },
-    createdAt: {
-      allowNull: false,
-      type: DataTypes.DATE
-    },
-    updatedAt: {
-      allowNull: false,
-      type: DataTypes.DATE
-    }
   }, {
     sequelize,
     modelName: 'BookOrder',

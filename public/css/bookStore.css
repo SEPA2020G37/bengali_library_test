@@ -1,0 +1,143 @@
+body {
+  padding: 0;
+  margin: 0;
+}
+
+#root {
+  height: 100%;
+  margin-right: 0;
+  margin-left: 0;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: auto 1000px auto;
+      grid-template-columns: auto 1000px auto;
+}
+
+#root > div:first-child, #root > div:last-child {
+  background-color: whitesmoke;
+}
+
+#root > div:first-child {
+  border-right: 1px solid #b3b3b3;
+  -webkit-box-shadow: -2px 0px 5px 0px inset #9b9b9b;
+          box-shadow: -2px 0px 5px 0px inset #9b9b9b;
+}
+
+#root > div:last-child {
+  border-right: 1px solid #b3b3b3;
+  -webkit-box-shadow: 2px 0px 5px 0px inset #9b9b9b;
+          box-shadow: 2px 0px 5px 0px inset #9b9b9b;
+}
+
+.book-store-center-section {
+  margin-top: 10px;
+  margin-left: 1px;
+  margin-right: 1px;
+}
+
+.book-store-book-grid {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr;
+  gap: 10px;
+}
+
+.book-card {
+  -webkit-box-shadow: 1px 1px 3px 0px #9b9b9b;
+          box-shadow: 1px 1px 3px 0px #9b9b9b;
+}
+
+.book-img {
+  margin: auto;
+  border-radius: 5%;
+  height: 300px;
+  width: 90%;
+}
+
+.book-store-card-buttons {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 50% 50%;
+      grid-template-columns: 50% 50%;
+}
+
+.book-store-card-buttons > button:nth-child(1) {
+  border: none;
+  border-radius: 5px 0 0 5px;
+  background-color: #29cf17;
+  padding: 5px;
+}
+
+.book-store-card-buttons > button:nth-child(1):hover {
+  background-color: #66bc5c;
+}
+
+.book-store-card-buttons > button:nth-child(2) {
+  border: none;
+  border-radius: 0 5px 5px 0;
+  background-color: #27496D;
+  padding: 5px;
+}
+
+.book-store-card-buttons > button:nth-child(2):hover {
+  background-color: #43668b;
+}
+
+.book-title {
+  font-family: 'Lato', sans-serif;
+  font-weight: 200;
+  margin: 10px 0 5px 20px;
+}
+
+.card-center > div:first-child {
+  font-family: 'Chewy', cursive;
+  font-size: 1.3rem;
+  text-align: center;
+  padding-top: 7px;
+}
+
+.filters-main {
+  border: 1px solid #b3b3b3;
+  padding-left: 10px;
+}
+
+.filters-main-heading {
+  margin-top: 10px;
+  text-align: center;
+}
+
+.filters-body {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr;
+      grid-template-columns: 1fr;
+}
+
+#bookOwnedModal, #purchaseCompleteModal {
+  position: fixed;
+  top: 45%;
+}
+
+.cart-main {
+  overflow-x: hidden;
+  position: fixed;
+  top: 0px;
+  right: 0px;
+  padding-top: 160px;
+  height: 100%;
+  background-color: #fff;
+  -webkit-transition: 0.35s;
+  transition: 0.35s;
+  width: 0;
+}
+
+.cart-show {
+  width: 400px;
+}
+
+.dark-mask {
+  pointer-events: none;
+  opacity: 0.3;
+  background: #ababab;
+}

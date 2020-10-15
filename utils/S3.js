@@ -1,3 +1,4 @@
+const { reject } = require('async');
 const aws = require('aws-sdk');
 
 // Creates a connection to Amazon S3 using IAM user credentials
@@ -18,6 +19,19 @@ module.exports.createBucket = (bucketName, aclType) => {
     }
     return new Promise((resolve, reject) => {
         connection.createBucket(bucketParams, (err, data) => {
+            if(err) reject(false);
+            else resolve(true);
+        });
+    });
+}
+
+module.exports.getObject = (bucketName, key) =>{
+    param={
+        Bucket: bucketName,
+        key: key
+    }
+    return new Promise((resolve,reject) =>{
+        connection.getObject(param,(err,data)=>{
             if(err) reject(false);
             else resolve(true);
         });

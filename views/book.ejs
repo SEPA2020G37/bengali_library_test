@@ -1,0 +1,80 @@
+<%- include('includes/head.ejs') %>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/userStylesheet.css" type="text/css">
+    <link rel="stylesheet" href="css/book.css" type="text/css">
+    <script src="//mozilla.github.io/pdf.js/build/pdf.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap" rel="stylesheet">
+    <title><%= title %></title>
+  </head> 
+    <body>
+        <div class="container-fluid">
+            <%- include('includes/user-nav.ejs') %>
+          <div class="row content" >
+
+            <div class="section">
+                  <div class="container">
+                    <article class="article">
+                      <div class="article-left">
+                        <div class="thumbnail">
+                          <img src="https://<%= book.isbn %>.s3.amazonaws.com/<%= book.isbn %>-1.jpg" alt="Book cover," />
+                          <!-- /.rating -->
+                          <div class="thumbnail-action">
+                            <%if(own){%>
+                              <a href="/pdf-viewer?isbn=<%= book.isbn %>" class="thumbnail-action-button">Read</a>
+                            <% }else{ %>
+                              <a href="#" class="thumbnail-action-button">Add to Cart</a>
+                            <% }%>
+                          </div>
+                          <!-- /.thumbnail-action -->
+                        </div>
+                        <!-- /.thumbnail -->
+                      </div>
+                      <!-- /.article-left -->
+                      <div class="article-right">
+                        <div class="article-meta">
+                          <div class="article-meta-1">
+                            <h1><%= book.title %></h1>
+                            <p>Publisher</p>
+                            <p>
+                              by
+                                <a href="#author1" class="link"><%= vendor.name %></a>
+                            </p>
+                          </div>
+                          <!-- /.article-meta-2 -->
+                        </div>
+                        <!-- /.article-meta -->
+                        <div class="article-content">
+                          <p>
+                            <%= book.description %>
+                          </p>
+                        </div>
+                        <!-- /.article-content -->
+                      </div>
+                      <!-- /.article-right -->
+                    </article>
+                  </div>
+                  <!-- /.container -->
+
+
+            </div>
+              <!-- /.section -->
+              <div class="secondary">
+                <div class="container">
+                  <h2>You might also like</h2>
+                  <ul class="gallery">
+                    <% recommendBooks.forEach((rBook) => {%>
+                      <li>
+                        <a href="/view?data=<%= rBook.isbn %>"
+                          ><img src="https://<%= rBook.isbn %>.s3.amazonaws.com/<%= rBook.isbn %>-1.jpg" alt="Book cover"
+                        /></a>
+                      </li>                       
+                    <%})%>
+                  </ul>
+                  <!-- /.gallery -->
+                </div>
+                
+                </div>
+
+          </div>
+        </div>
+    <%- include('includes/foot.ejs') %>
