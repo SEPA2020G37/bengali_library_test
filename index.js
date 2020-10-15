@@ -8,6 +8,7 @@ const passportConfig = require('./auth/passport');
 const expressSession = require('express-session');
 const authRoutes = require('./routes/authRoutes');
 const adminRoutes = require('./routes/adminRoutes');
+const bookStoreRoutes = require('./routes/bookStoreRoutes');
 
 // Set up the local strategy for Passport based authentication
 passportConfig.setStrategy();
@@ -27,6 +28,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Set up body parser to decode POST data and populate the request.body property
 app.use(bodyParser.urlencoded({ extended: false }));
 
+// Set up body parser to decode POST data which come as JSON format and populate the request.body property
+app.use(bodyParser.json());
+
 // Set up express session middleware
 app.use(expressSession({ secret: process.env.EXPRESS_SESSION_SECRET, resave: false, saveUninitialized: false }));
 
@@ -42,6 +46,7 @@ app.use(passportConfig.passportSession);
 // Route middleware
 app.use(authRoutes);
 app.use(adminRoutes);
+app.use(bookStoreRoutes);
 
 // Start the node server
 app.listen(8080, () => {

@@ -116,7 +116,7 @@ $(document).ready(() => {
         .then(data => {
             let parent = $(`#item-${data.id}`);
             parent.find('[data-type-identifier=title]').text(data.title);
-            parent.find('[data-type-identifier=description]').text(data.description);
+            parent.find('[data-type-identifier=description]').text(data.description.substring(0, 30));
             parent.find('[data-type-identifier=price]').text(data.price);
             if(data.Genres.length)
                 parent.find('[data-type-identifier=genre]').text(data.Genres[0].genre);
