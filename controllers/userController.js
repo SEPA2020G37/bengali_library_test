@@ -23,31 +23,54 @@ module.exports.getDashboard = (req, res, next) => {
 
 module.exports.getBook = (req, res) => {
   let data = req.query.data;
-  db.Book.count({
-    where: {isbn: data},
-    include: [{ model: db.UserBookList, where: { userId: req.user.id } }],
-  })
-  .then((bookCount)=>{
-    var own;
-    if(bookCount == 0){
-      own = false;
-    }else{
-      own = true;
-    }
+  if(req.user){
+    db.Book.count({
+      where: {isbn: data},
+      include: [{ model: db.UserBookList, where: { userId: req.user.id } }],
+    })
+    .then((bookCount)=>{
+      var own;
+      if(bookCount == 0){
+        own = false;
+      }else{
+        own = true;
+      }
+      getBook(data).then(([vendor,book])=>{
+        getRecommendBooks(req.user.id,book.isbn).then((books)=>{
+          console.log(books);
+          res.render("book", {
+            title: "book",
+            user: req.user,
+            book: book,
+            recommendBooks: books,
+            vendor: vendor,
+            own: own,
+          });          
+        })
+      })
+    }) 
+  }else{
     getBook(data).then(([vendor,book])=>{
-      getRecommendBooks(req.user.id,book.isbn).then((books)=>{
-        console.log(books);
+      db.Book.findAll({
+        where: {
+          vendorId: vendor.id,
+          isbn: {
+            [db.Sequelize.Op.ne]: book.isbn
+          }
+        }
+      }).then((books)=>{
         res.render("book", {
           title: "book",
           user: req.user,
           book: book,
           recommendBooks: books,
           vendor: vendor,
-          own: own,
-        });          
+          own: false,
+        });  
       })
     })
-  })
+  }
+ 
 };
 
 module.exports.pdfViewer = (req, res, next) => {

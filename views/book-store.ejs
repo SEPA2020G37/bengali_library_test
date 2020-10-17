@@ -9,7 +9,7 @@
 
 <body>
     <div id="admin-master-container">
-        <%- include('includes/book-store-nav.ejs') %>
+        <%- include('includes/nav.ejs') %>
         <div id="root" class="row main">
             <div></div>
             <div class="row book-store-center-section">
@@ -60,7 +60,7 @@
                                         data-user-id="<%= user.id %>" class="add-to-cart"><img src="resources/add-to-cart.png"
                                             alt="btn"></button>
                                     <% } %>
-                                    <button type="button"><img src="resources/magnifier.png" alt="btn"></button>
+                                    <button type="button" onclick="window.location.href='/view?data=<%= book.isbn %>';"><img src="resources/magnifier.png" alt="btn"></button>
                                 </div>
                             </div>
                         </div>
