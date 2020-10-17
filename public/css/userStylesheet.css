@@ -79,3 +79,38 @@ html {
 .glide__bullet--active {
   background-color: darkgray !important;
 }
+
+#prev, #next{
+  margin: 0;
+  position: fixed;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+.user-books-missing{
+  width: 50%;
+  margin: auto;
+  text-align: center;
+  margin-top: 70px;
+  margin-bottom: 70px;
+}
+
+.user-books-missing > p{
+  font-weight: bold;
+}
+
+.user-books-missing > a{
+  text-decoration: none;
+  color: #27496D;
+  border: 1px solid #27496D;
+  padding: 8px;
+  border-radius: 7px;
+  transition: 0.3s;
+  margin: 10px 0;
+}
+
+.user-books-missing > a:hover{
+  background-color: #27496D;
+  color: #fff;
+}

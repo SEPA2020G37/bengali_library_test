@@ -12,7 +12,7 @@
     <div class="container-fluid">
     <%- include('includes/nav.ejs') %>
         <div class="row content" >
-            <embed id="embed" src="<%= link %>" type="application/pdf" style="height: 900px; width: 100%;" data-isbn="<%= isbn %>" data-page="<%= page %>"/>   
+            <embed id="embed" src="<%= link %>" type="application/pdf" style="height: 900px; width: 100%;" data-isbn="<%= isbn %>"/>   
                 <div class="glide__arrows" data-glide-el="controls">
                     <button class="glide__arrow glide__arrow--left" data-glide-dir="<" button id="prev" onclick="prev()"><img src="resources/arrow.png" height="30px" /></button>
                     <button class="glide__arrow glide__arrow--right" data-glide-dir=">" button id="next" onclick="next()"><img src="resources/arrow right.png" height="30px" /></button>

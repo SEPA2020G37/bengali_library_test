@@ -110,7 +110,7 @@ module.exports.purchaseBooks = (req, res, next) => {
         currency: 'aud'
     })
     .then(() => {
-        createOrder(7, req.body.items, total, res);
+        createOrder(req.user.id, req.body.items, total, res);
     })
     .catch(err => {
         if(err)
