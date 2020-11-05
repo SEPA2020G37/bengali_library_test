@@ -49,39 +49,7 @@ const CART = {
     }
 }
 
-$('.add-to-cart').on('click', function(event){
-    let userId = $(this).data('user-id');
-    let bookId = $(this).data('book-id');
-    let bookTitle = $(this).data('book-title');
-    let bookPrice = $(this).data('book-price');
-    let bookImage = $(this).data('book-img');
-    let url = window.location.origin + '/book-owned?';
-    let UrlSearchParams = new URLSearchParams();
-    UrlSearchParams.append('bookId', bookId);
-    UrlSearchParams.append('userId', userId);
-    url += UrlSearchParams.toString(); 
-    fetch(url)
-    .then(response => { 
-        return response.json()
-    })
-    .then(data => {
-        if(!data){
-            let item = {
-                id: bookId,
-                name: bookTitle,
-                qty: 1,
-                price: bookPrice,
-                image: bookImage
-            }
-            CART.add(item);
-        }else{
-            $('#bookOwnedModal').modal('show');
-        }
-    })
-    .catch(err => {
-        console.log(err);
-    })
-});
+addToCartListner();
 
 $('#viewCart').on('click', function(event){
     try{
@@ -189,4 +157,103 @@ let x = $('.proceed-to-checkout').on('click', function(){
     stripeHandler.open({
         amount: subtotal * 100
     });
-})
+});
+
+// Book Filter Code
+$('#search-bar').on("change", function(event){
+    let url = `/find-book?`;
+    let urlsearchParams = new URLSearchParams();
+    urlsearchParams.append('string', $(this).val());
+    url += urlsearchParams.toString();
+    fetch(url)
+    .then(response => {
+        return response.json();
+    })
+    .then(books => {
+        updateStoreGrid(books);
+    })
+    .catch(err => {
+        console.log(err);
+    })
+});
+
+$('input[name=genre]').on('change', function(event){
+    let url = `/find-book-by-genre?`;
+    let usp = new URLSearchParams();
+    $.each($("input[name=genre]:checked"), function(){
+        usp.append('genre[]', $(this).val());
+    });
+    console.log(usp.toString());
+    url += usp.toString();
+    fetch(url)
+    .then(response => {
+        return response.json();
+    })
+    .then(books => {
+        updateStoreGrid(books);
+    })
+    .catch(err => {
+        if(err) throw err;
+    })
+});
+
+// Vanilla JS functions
+function addToCartListner(){
+    $('.add-to-cart').on('click', function(event){
+        let userId = $(this).data('user-id');
+        let bookId = $(this).data('book-id');
+        let bookTitle = $(this).data('book-title');
+        let bookPrice = $(this).data('book-price');
+        let bookImage = $(this).data('book-img');
+        let url = window.location.origin + '/book-owned?';
+        let UrlSearchParams = new URLSearchParams();
+        UrlSearchParams.append('bookId', bookId);
+        UrlSearchParams.append('userId', userId);
+        url += UrlSearchParams.toString(); 
+        fetch(url)
+        .then(response => { 
+            return response.json()
+        })
+        .then(data => {
+            if(!data){
+                let item = {
+                    id: bookId,
+                    name: bookTitle,
+                    qty: 1,
+                    price: bookPrice,
+                    image: bookImage
+                }
+                CART.add(item);
+            }else{
+                $('#bookOwnedModal').modal('show');
+            }
+        })
+        .catch(err => {
+            console.log(err);
+        })
+    });
+}
+
+function updateStoreGrid(books){
+    let parent = $('.book-store-book-grid');
+    let template = $('.book-card').first();
+    parent.empty();
+    for(let book of books){
+        let newCard = template.clone();
+        let bookCover = `https://${book.isbn}.s3.amazonaws.com/${book.isbn}-1.jpg`;
+        newCard.find('.book-title').text(book.title);
+        newCard.find('.book-img').attr('src', bookCover);
+        newCard.find('.price-of-price').text(`$${book.price}`);
+        let addToCart = newCard.find('.add-to-cart');
+        if(addToCart){
+            addToCart.attr('data-book-id', book.id);
+            addToCart.attr('data-book-title', book.title);
+            addToCart.attr('data-book-price', book.price);
+            addToCart.attr('data-book-img', bookCover);
+            addToCart.attr('data-book-img', bookCover);
+        }
+        newCard.find('.view-book-details').attr('onclick', `window.location.href='/view?data=${book.isbn}';`);
+        parent.append(newCard);
+    }
+    addToCartListner();
+}

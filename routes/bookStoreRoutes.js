@@ -12,6 +12,13 @@ Router.get('/book-store', bookStoreController.getBookStore);
 // Check if a particular book which the user is adding to the cart is already owned by the user
 Router.get('/book-owned', bookStoreController.checkBookOwnership);
 
+// Route to make a payment for a book purchases
 Router.post('/purchase', bookStoreController.purchaseBooks);
+
+// Route to search for specific books via genre
+Router.get('/find-book-by-genre', bookStoreController.findBookByGenre);
+
+// Route to search for specific books via text
+Router.get('/find-book', bookStoreController.findBook);
 
 module.exports = Router;

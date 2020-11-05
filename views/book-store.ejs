@@ -18,6 +18,13 @@
                         <h6 class="filters-main-heading">Filters</h6>
                         <div class="filters-body">
                             <div>
+                                <p><b>Search</b></p>
+                                <img src="resources/search.png" alt="">
+                                <input id="search-bar" type="text" style="border: 1px solid #27496D; border-radius: 10px; width: 80%;">
+                                <br>
+                                <br>
+                            </div>
+                            <div>
                                 <p><b>Genre</b></p>
                                 <% for(let g of genre){ %>
                                 <label>
@@ -28,7 +35,7 @@
                                 <% } %>
                                 <br>
                             </div>
-                            <div>
+                            <!-- <div>
                                 <p><b>Price Range</b></p>
                                 <label>
                                     From&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; To<br>
@@ -37,33 +44,33 @@
                                     <input type="number" name="price-ceil" step="1" min="1" max="1000">
                                 </label>
                                 <br>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>
                 <div class="col-9 book-store-book-grid">
                     <% for(let book of books){ %>
-                    <div class="card book-card">
-                        <h5 class="card-title book-title"><%= book.title %></h5>
-                        <img class="card-img-top book-img"
-                            src="https://<%= book.isbn %>.s3.amazonaws.com/<%= book.isbn %>-1.jpg" alt="Book Image">
-                        <div class="card-body row card-center no-gutters">
-                            <div class="col-4">
-                                $<%= book.price %>
-                            </div>
-                            <div class="col-8">
-                                <div class="book-store-card-buttons">
-                                    <% if(user){ %>
-                                    <button type="button" data-book-id="<%= book.id %>" data-book-title="<%= book.title %>"
-                                        data-book-price="<%= book.price %>"
-                                        data-book-img="https://<%= book.isbn %>.s3.amazonaws.com/<%= book.isbn %>-1.jpg"
-                                        data-user-id="<%= user.id %>" class="add-to-cart"><img src="resources/add-to-cart.png" alt="btn"></button>
-                                    <% } %>
-                                    <button type="button" onclick="window.location.href='/view?data=<%= book.isbn %>';"><img src="resources/magnifier.png" alt="btn"></button>
+                        <div class="card book-card" style="max-height: 421px;">
+                            <h5 class="card-title book-title"><%= book.title %></h5>
+                            <img class="card-img-top book-img"
+                                src="https://<%= book.isbn %>.s3.amazonaws.com/<%= book.isbn %>-1.jpg" alt="Book Image">
+                            <div class="card-body row card-center no-gutters">
+                                <div class="col-4 price-of-price">
+                                    $<%= book.price %>
+                                </div>
+                                <div class="col-8">
+                                    <div class="book-store-card-buttons">
+                                        <% if(user){ %>
+                                        <button type="button" data-book-id="<%= book.id %>" data-book-title="<%= book.title %>"
+                                            data-book-price="<%= book.price %>"
+                                            data-book-img="https://<%= book.isbn %>.s3.amazonaws.com/<%= book.isbn %>-1.jpg"
+                                            data-user-id="<%= user.id %>" class="add-to-cart"><img src="resources/add-to-cart.png" alt="btn"></button>
+                                        <% } %>
+                                        <button type="button" class="view-book-details" onclick="window.location.href='/view?data=<%= book.isbn %>';"><img src="resources/magnifier.png" alt="btn"></button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
                     <% } %>
                 </div>
             </div>

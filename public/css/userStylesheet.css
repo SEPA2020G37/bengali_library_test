@@ -114,3 +114,14 @@ html {
   background-color: #27496D;
   color: #fff;
 }
+
+.user-dash-first-glide{
+  position: relative;
+}
+
+#glide-button{
+  position: absolute;
+  top: 40%;
+  -ms-transform: translateY(-60%);
+  transform: translateY(-60%);
+}

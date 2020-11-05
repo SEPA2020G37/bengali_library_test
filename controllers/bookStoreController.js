@@ -117,3 +117,23 @@ module.exports.purchaseBooks = (req, res, next) => {
             throw err;
     })
 }
+
+module.exports.findBook = async (req, res, next) => {
+    let data;
+    if(req.query.string === ""){
+        data = await db.Book.findAll();
+    }else{
+        data = await db.Book.findAll({ where: { title: { [db.Sequelize.Op.like]: `%${req.query.string}%` } } });
+    }
+    res.send(JSON.stringify(data));
+}
+
+module.exports.findBookByGenre = async (req, res, next) => {
+    // console.log(req.query);
+    if(!req.query.genre){
+        data = await db.Book.findAll();
+    }else{
+        data = await db.Book.findAll({ include: [ { model: db.Genre, where: { id: { [db.Sequelize.Op.in]: req.query.genre } } } ] });
+    }
+    res.send(JSON.stringify(data));
+}

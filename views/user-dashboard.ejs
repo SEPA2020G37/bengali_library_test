@@ -15,9 +15,9 @@
                 <br />
                 <p class="h4">Continue Reading</p>
                 <% if(Array.isArray(books) && books.length) { %>
-                    <div class="glide book_glide">
+                    <div class="glide book_glide user-dash-first-glide">
                         <div class="glide__track" data-glide-el="track">
-                            <% if(wishBooks.length > 4) {%>
+                            <% if(books.length > 4) {%>
                                 <ul class="glide__slides book_type" data-type="carousel">
                             <% } else {%>
                                 <ul class="glide__slides book_type" data-type="slider">                          
@@ -40,8 +40,8 @@
                             </ul>
                         </div>
                         <div class="glide__arrows" data-glide-el="controls">
-                            <button type="button" class="glide__arrow glide__arrow--left btn" data-glide-dir="<" button id="prev" style="background-color: #27496D; color: #27496D"><img src="resources/arrow.png" height="30px"/></button>
-                            <button type="button" class="glide__arrow glide__arrow--right btn" data-glide-dir=">" button id="next" style="background-color: #27496D; color: #27496D"><img src="resources/arrow right.png" height="30px" /></button>
+                            <button type="button" id="glide-button" class="glide__arrow glide__arrow--left btn" data-glide-dir="<" button style="background-color: #27496D; color: #27496D"><img src="resources/arrow.png" height="30px"/></button>
+                            <button type="button" id="glide-button" class="glide__arrow glide__arrow--right btn" data-glide-dir=">" button style="background-color: #27496D; color: #27496D"><img src="resources/arrow right.png" height="30px" /></button>
                         </div>
                         <div class="glide__bullets" data-glide-el="controls[nav]">
                             <% for(var i=0; i< books.length; i++) { %>
@@ -52,7 +52,7 @@
                 <% } else { %>
                     <div class="user-books-missing">
                         <p>Oop! Looks like You don't have any books.</p>
-                        <a href="">Get Started</a>
+                        <a href="/book-store">Get Started</a>
                     </div>
                 <% }%>
             </div>
@@ -60,7 +60,7 @@
                 <br />
                 <p class="h4">WishList</p>
                 <% if(Array.isArray(wishBooks) && wishBooks.length) { %>
-                <div class="glide wish_glide">
+                <div class="glide wish_glide user-dash-first-glide">
                     <div class="glide__track" data-glide-el="track">
                         <% if(wishBooks.length > 4) {%>
                             <ul class="glide__slides wish-type" data-type="carousel">
@@ -85,8 +85,8 @@
                         </ul>
                     </div>
                     <div class="glide__arrows" data-glide-el="controls">
-                        <button type="button" class="glide__arrow glide__arrow--left btn" data-glide-dir="<" style="background-color: #27496D; color: #27496D"><img src="resources/arrow.png" height="30px" style="background-color: #27496D;"/></button>
-                        <button type="button" class="glide__arrow glide__arrow--right btn" data-glide-dir=">" style="background-color: #27496D; color: #27496D"><img src="resources/arrow right.png" height="30px" /></button>
+                        <button type="button" id="glide-button" class="glide__arrow glide__arrow--left btn" data-glide-dir="<" style="background-color: #27496D; color: #27496D"><img src="resources/arrow.png" height="30px" style="background-color: #27496D;"/></button>
+                        <button type="button" id="glide-button" class="glide__arrow glide__arrow--right btn" data-glide-dir=">" style="background-color: #27496D; color: #27496D"><img src="resources/arrow right.png" height="30px" /></button>
                     </div>
                     <div class="glide__bullets" data-glide-el="controls[nav]">
                         <% for(var i=0; i< wishBooks.length; i++) { %>
@@ -97,7 +97,7 @@
                 <% } else { %>
                     <div class="user-books-missing">
                         <p>Oop! Looks like You haven't wished for anything yet.</p>
-                        <a href="">Get Started</a>
+                        <a href="/book-store">Get Started</a>
                     </div>
                 <% }%>
             </div>
@@ -105,9 +105,8 @@
         <script src="https://cdn.jsdelivr.net/npm/@glidejs/glide"></script>
         <script>
             //booklist glide
-            const bookAmt = '<%= books.length %>';
-            if(bookAmt > 6)
-                bookAmt = 6;
+            let bookAmt = '<%= books.length %>';
+            if(bookAmt > 5) bookAmt = 5;
             const book = document.querySelector(".book_glide");
             book_slide = document.querySelector(".book_type");
             book_type = book_slide.dataset.type;
@@ -119,8 +118,8 @@
             new Glide(book,bookConfig).mount();
 
             //wishlist glide
-            const wishBookAmt = '<%= wishBooks.length %>';
-            if(wishBookAmt > 6) wishBookAmt = 6;
+            let wishBookAmt = '<%= wishBooks.length %>';
+            if(wishBookAmt > 5) wishBookAmt = 5;
             const wish = document.querySelector(".wish_glide");
             wish_slide = document.querySelector(".wish_type");
             wish_type = wish_slide.dataset.type;

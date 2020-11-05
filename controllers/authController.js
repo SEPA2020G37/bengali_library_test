@@ -58,7 +58,7 @@ module.exports.postRegister = (req, res, next) => {
                                                     req.login(user, (err) => {
                                                         if(err) { throw err }
                                                         else {
-                                                            res.render('user-dashboard', { user: req.user, title: 'userDB' }); 
+                                                            res.redirect('/user_dashboard'); 
                                                         }
                                                     });
                                                 } 
