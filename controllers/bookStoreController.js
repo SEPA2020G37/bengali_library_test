@@ -40,7 +40,7 @@ function createOrder(userId, bookList, totalAmt, res){
     })
     .then(data => {
         // data.books.forEach((value) => { value.currentPage = 0 });
-        data.bookList.addBooks(data.books, { through: { currentPage: 0 } });
+        data.bookList.addBooks(data.books, { through: { currentPage: 1 } });
         data.bookList.qty = data.bookList.qty + data.books.length;
         data.bookList.save();
         res.send(JSON.stringify({ transactionComplete: true }));
