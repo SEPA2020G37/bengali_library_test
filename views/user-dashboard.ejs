@@ -1,11 +1,135 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+<%- include('includes/head.ejs') %>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/userStylesheet.css" type="text/css">
+    <link rel="stylesheet" href="css/glide.core.min.css">
+    <link rel="stylesheet" href="css/glide.theme.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap" rel="stylesheet">
+    <title><%= title %></title>  
+</head> 
 <body>
-    <h1>User Dashboard!</h1>
-</body>
-</html>
+    <div class="container-fluid">
+    <%- include('includes/nav.ejs') %>
+        <div class="row content">
+            <h2> Hi, <%= user.firstName %></h2>
+            <div class="list">
+                <br />
+                <p class="h4">Continue Reading</p>
+                <% if(Array.isArray(books) && books.length) { %>
+                    <div class="glide book_glide user-dash-first-glide">
+                        <div class="glide__track" data-glide-el="track">
+                            <% if(books.length > 4) {%>
+                                <ul class="glide__slides book_type" data-type="carousel">
+                            <% } else {%>
+                                <ul class="glide__slides book_type" data-type="slider">                          
+                            <% }%>
+                                <% books.forEach((book) => {%>
+                                    <li class="glide__slide" style="width: 275px;">
+                                        <div class="card">
+                                            <img
+                                            class="card-img-top"
+                                            src="https://<%= book.isbn %>.s3.amazonaws.com/<%= book.isbn %>-1.jpg"
+                                            alt="Card image cap"
+                                            /> 
+                                        </div> 
+                                        <div class="card-body">
+                                            <h5 class="card-title"><%= book.title %></h5>
+                                            <a href="/view?data=<%= book.isbn %>" class="btn" style="background-color: #27496D; color: #ffffff">Read</a>
+                                        </div>
+                                    </li>
+                                <%})%>
+                            </ul>
+                        </div>
+                        <div class="glide__arrows" data-glide-el="controls">
+                            <button type="button" id="glide-button" class="glide__arrow glide__arrow--left btn" data-glide-dir="<" button style="background-color: #27496D; color: #27496D"><img src="resources/arrow.png" height="30px"/></button>
+                            <button type="button" id="glide-button" class="glide__arrow glide__arrow--right btn" data-glide-dir=">" button style="background-color: #27496D; color: #27496D"><img src="resources/arrow right.png" height="30px" /></button>
+                        </div>
+                        <div class="glide__bullets" data-glide-el="controls[nav]">
+                            <% for(var i=0; i< books.length; i++) { %>
+                                <button class="glide__bullet" data-glide-dir="=<% i%>"></button>
+                            <% }%>
+                        </div>
+                    </div>
+                <% } else { %>
+                    <div class="user-books-missing">
+                        <p>Oop! Looks like You don't have any books.</p>
+                        <a href="/book-store">Get Started</a>
+                    </div>
+                <% }%>
+            </div>
+            <div class="list">
+                <br />
+                <p class="h4">WishList</p>
+                <% if(Array.isArray(wishBooks) && wishBooks.length) { %>
+                <div class="glide wish_glide user-dash-first-glide">
+                    <div class="glide__track" data-glide-el="track">
+                        <% if(wishBooks.length > 4) {%>
+                            <ul class="glide__slides wish-type" data-type="carousel">
+                        <% } else {%>
+                            <ul class="glide__slides wish_type" data-type="slider">                          
+                        <% }%>
+                            <% wishBooks.forEach((wish) => {%>
+                                <li class="glide__slide">
+                                    <div class="card">
+                                        <img
+                                        class="card-img-top"
+                                        src="https://<%= wish.isbn %>.s3.amazonaws.com/<%= wish.isbn %>-1.jpg"
+                                        alt="Card image cap"
+                                        /> 
+                                    </div> 
+                                    <div class="card-body">
+                                        <h5 class="card-title"><%= wish.title %></h5>
+                                        <a href="/view?data=<%= wish.isbn %>" class="btn btn-secondary">Check</a>
+                                    </div>
+                                </li>
+                            <%})%>
+                        </ul>
+                    </div>
+                    <div class="glide__arrows" data-glide-el="controls">
+                        <button type="button" id="glide-button" class="glide__arrow glide__arrow--left btn" data-glide-dir="<" style="background-color: #27496D; color: #27496D"><img src="resources/arrow.png" height="30px" style="background-color: #27496D;"/></button>
+                        <button type="button" id="glide-button" class="glide__arrow glide__arrow--right btn" data-glide-dir=">" style="background-color: #27496D; color: #27496D"><img src="resources/arrow right.png" height="30px" /></button>
+                    </div>
+                    <div class="glide__bullets" data-glide-el="controls[nav]">
+                        <% for(var i=0; i< wishBooks.length; i++) { %>
+                            <button class="glide__bullet" data-glide-dir="=<% i%>"></button>
+                        <% }%>
+                    </div>
+                </div>
+                <% } else { %>
+                    <div class="user-books-missing">
+                        <p>Oop! Looks like You haven't wished for anything yet.</p>
+                        <a href="/book-store">Get Started</a>
+                    </div>
+                <% }%>
+            </div>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/@glidejs/glide"></script>
+        <script>
+            //booklist glide
+            let bookAmt = '<%= books.length %>';
+            if(bookAmt > 5) bookAmt = 5;
+            const book = document.querySelector(".book_glide");
+            book_slide = document.querySelector(".book_type");
+            book_type = book_slide.dataset.type;
+            const bookConfig = {
+                type: book_type,
+                startAt: 0,
+                perView: bookAmt,
+            };
+            new Glide(book,bookConfig).mount();
+
+            //wishlist glide
+            let wishBookAmt = '<%= wishBooks.length %>';
+            if(wishBookAmt > 5) wishBookAmt = 5;
+            const wish = document.querySelector(".wish_glide");
+            wish_slide = document.querySelector(".wish_type");
+            wish_type = wish_slide.dataset.type;
+            const wishConfig = {
+                type: wish_type,
+                startAt: 0,
+                perView: wishBookAmt,
+            };
+            new Glide(wish,wishConfig).mount();
+
+        </script>
+    </div>
+    <%- include('includes/foot.ejs') %>

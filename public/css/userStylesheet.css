@@ -1,0 +1,127 @@
+* {
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+}
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 0px;
+  margin: 0px;
+  color: #0b0b0b;
+}
+html {
+  scroll-behavior: smooth;
+}
+.btn-primary {
+  color: #fff;
+  background-color: #007bff !important;
+  border-color: #007bff !important;
+}
+.nav-row{
+  top:0;
+}
+.navbar {
+  background-color: #27496d !important;
+  padding: 20px !important;
+}
+#navbar{
+	transition: top 0.5s
+}
+.navbar a:hover {
+  color: #e8b923 !important;
+}
+.navbar .nav-link {
+  padding-right: 1rem !important;
+  text-align: center;
+}
+.dropdown-menu{
+  text-align: center;
+}
+.content {
+  margin-top: 20ex;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+.list{
+  width: 100%;
+}
+.card{
+  border: none;
+}
+.card-img-top{
+  height: 400px;
+  width: 275px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.card-body{
+  text-align: center;
+}
+
+.grid-container{
+  display: grid;
+  grid-template-columns: repeat(4, 300px);
+  grid-gap: 1rem;
+  padding: 10px;
+}
+.grid-container > div{
+  text-align: center;
+  align-items: center;
+  border: none;
+}
+.secondary{
+  bottom: 0;
+  width: 90%;
+  margin-left: 5%;
+  margin-right: 5%;
+}
+.glide__bullet--active {
+  background-color: darkgray !important;
+}
+
+#prev, #next{
+  margin: 0;
+  position: fixed;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+.user-books-missing{
+  width: 50%;
+  margin: auto;
+  text-align: center;
+  margin-top: 70px;
+  margin-bottom: 70px;
+}
+
+.user-books-missing > p{
+  font-weight: bold;
+}
+
+.user-books-missing > a{
+  text-decoration: none;
+  color: #27496D;
+  border: 1px solid #27496D;
+  padding: 8px;
+  border-radius: 7px;
+  transition: 0.3s;
+  margin: 10px 0;
+}
+
+.user-books-missing > a:hover{
+  background-color: #27496D;
+  color: #fff;
+}
+
+.user-dash-first-glide{
+  position: relative;
+}
+
+#glide-button{
+  position: absolute;
+  top: 40%;
+  -ms-transform: translateY(-60%);
+  transform: translateY(-60%);
+}

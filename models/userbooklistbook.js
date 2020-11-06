@@ -14,26 +14,6 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   UserBookListBook.init({
-    bookId: {
-      type: DataTypes.INTEGER,
-      primaryKey: true,
-      allowNull: false,
-      autoIncrement: false,
-      references: {
-        model: 'Books',
-        key: 'id'
-      }
-    },
-    userBookListId: {
-      type: DataTypes.INTEGER,
-      primaryKey: true,
-      allowNull: false,
-      autoIncrement: false,
-      references: {
-        model: 'UserBookLists',
-        key: 'id'
-      }
-    },
     currentPage: {
       type: DataTypes.INTEGER,
       allowNull: true,
@@ -41,14 +21,6 @@ module.exports = (sequelize, DataTypes) => {
         isNumeric: true,
         isInt: true
       }
-    },
-    createdAt: {
-      allowNull: false,
-      type: DataTypes.DATE
-    },
-    updatedAt: {
-      allowNull: false,
-      type: DataTypes.DATE
     }
   }, {
     sequelize,

@@ -201,7 +201,7 @@ module.exports.getDashboard = (req, res, next) => {
             })
         })
         .then(data => {
-            res.render('admin-dashboard-books', { title: 'adminDB', books: books, vendors: data.vendors, genre: data.genre });
+            res.render('admin-dashboard-books', { title: 'adminDB', user:req.user, books: books, vendors: data.vendors, genre: data.genre });
         })
         .catch(err => {
             throw err;
@@ -304,7 +304,7 @@ module.exports.getGenreView = (req, res, next) => {
     db.Genre.findAll({ offset: offset })
     .then(genre => {
         if(genre)
-            res.render('admin-dashboard-genre', { title: 'adminDB', genre: genre });
+            res.render('admin-dashboard-genre', { title: 'adminDB', user:req.user, genre: genre });
     })
     .catch(err => {
         if(err) throw err;

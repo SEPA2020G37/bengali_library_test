@@ -42,7 +42,10 @@ module.exports.setStrategy = () => {
     });
 
     passport.deserializeUser((id, callback) => {
-        models.User.findByPk(id)
+        models.User.findOne({
+            attributes: ['id','firstName','lastName','email','positionId'],
+            where: { id: id }
+        })
         .then(user => {
             if(user) callback(null, user);
         })
