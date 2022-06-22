@@ -23,7 +23,7 @@
   },
   "homepage": "https://github.com/SEPA2020G37/bengali_library_test#readme",
   "dependencies": {
-    "async": "^3.2.0",
+    "async": "^3.2.2",
     "aws-sdk": "^2.750.0",
     "bcrypt": "^5.0.0",
     "body-parser": "^1.19.0",
